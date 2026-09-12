@@ -5,21 +5,18 @@ Mehmet Onur Keskin · Berk Buzcu · Berkecan Koçyiğit · Umut Çakan · Anıl 
 [Paper](https://doi.org/10.24963/ijcai.2024/1012) · [First negotiation](#your-first-negotiation) · [Study guide](docs/studies.md) · [Research companions](#a-family-of-negotiation-studies) · [Citation](#cite-the-framework)
 
 [![Tests](https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/actions/workflows/tests.yml/badge.svg)](https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/actions/workflows/tests.yml)
-[![Software archive](https://zenodo.org/badge/DOI/10.5281/zenodo.22728983.svg)](https://doi.org/10.5281/zenodo.22728983)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
-**A shared workspace for studying how people and agents negotiate.**
+NEGOTIATOR helps researchers run human–agent and human–robot negotiation studies.
+Participants state their preferences and exchange offers with an agent; the
+researcher controls the conditions and follows the interaction in a separate view.
+The framework records decisions, outcomes and session events for later analysis.
 
-A negotiation is more than an exchange of bids. People arrive with preferences,
-react to their partner's behavior, express themselves and work against a deadline.
-NEGOTIATOR brings these parts of an interaction together so researchers can study
-the negotiation itself and change the components relevant to their question.
-
-The [IJCAI 2024 paper](https://doi.org/10.24963/ijcai.2024/1012) presents the framework
-behind a series of human–agent and human–robot studies. This maintained release
-offers a local study workspace, published negotiation components, durable session
-records and analysis tools. Start with text or a browser avatar; connect a robot
-through a separate device bridge when your lab setup is ready.
+The [IJCAI 2024 paper](https://doi.org/10.24963/ijcai.2024/1012) describes how preference
+elicitation, negotiation strategies, emotion analysis and robot interaction fit
+together. This repository provides a maintained implementation with a local GUI,
+published strategy components and independent device bridges. You can try a
+complete negotiation in your browser before configuring a robot.
 
 ![Participant view: a synthetic offer, the participant's score and negotiation history.](docs/images/participant.png)
 
