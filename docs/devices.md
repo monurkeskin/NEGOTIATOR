@@ -60,7 +60,8 @@ this distinction in latency analysis.
 
 Optional gesture/face maps select the published framework's utility/move-based
 moods (Frustrated, Annoyed, Dissatisfied, Neutral, Convinced, Content, Worried).
-The original thresholds and one-time deadline warnings are preserved. Presentation
+The inspected legacy variant's thresholds and one-time warnings are preserved;
+individual papers can specify different schedules (see [methods](methods.md)). Presentation
 RNG/wording never changes negotiation policy or canonical bids. Installed assets
 are selected explicitly; proprietary or unresolved historical assets are not bundled.
 

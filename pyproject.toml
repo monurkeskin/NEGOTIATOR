@@ -20,8 +20,8 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/monurkeskin/NEGOTIATOR"
-Issues = "https://github.com/monurkeskin/NEGOTIATOR/issues"
+Repository = "https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024"
+Issues = "https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/issues"
 
 [project.scripts]
 negotiator = "negotiator.cli:main"

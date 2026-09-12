@@ -6,12 +6,12 @@ configurations, citations, method notes and a complete synthetic run/report comm
 
 | Paper | Companion | Principal preset |
 | --- | --- | --- |
-| [Let's Negotiate with Jennifer! Towards a Speech-Based Human-Robot Negotiation](https://doi.org/10.1007/978-981-15-5869-6_1) | [`jennifer-negotiation-2021`](https://github.com/monurkeskin/jennifer-negotiation-2021) | `tsbt` |
-| [Solver Agent: Towards Emotional and Opponent-Aware Agent for Human-Robot Negotiation](https://www.ifaamas.org/Proceedings/aamas2021/pdfs/p1557.pdf) | [`solver-agent-2021`](https://github.com/monurkeskin/solver-agent-2021) | `solver-2021` |
-| [Would You Imagine Yourself Negotiating With a Robot, Jennifer? Why Not?](https://doi.org/10.1109/THMS.2021.3121664) | [`jennifer-negotiation-2022`](https://github.com/monurkeskin/jennifer-negotiation-2022) | `tsbt` |
-| [Effects of Agent's Embodiment in Human-Agent Negotiations](https://doi.org/10.1145/3570945.3607362) | [`agent-embodiment-2023`](https://github.com/monurkeskin/agent-embodiment-2023) | `hybrid` |
-| [You Look Nice, but I Am Here to Negotiate: The Influence of Robot Appearance on Negotiation Dynamics](https://doi.org/10.1145/3610978.3640759) | [`robot-appearance-2024`](https://github.com/monurkeskin/robot-appearance-2024) | `solver-2021` |
-| [An Adaptive Emotion-Aware Strategy for Human-Agent Negotiation: Insights from Real-World Human-Robot Experiments](https://doi.org/10.1145/3717511.3747087) | [`emotion-aware-negotiation-2025`](https://github.com/monurkeskin/emotion-aware-negotiation-2025) | `solver-2025` |
+| [Let's Negotiate with Jennifer! Towards a Speech-Based Human-Robot Negotiation](https://doi.org/10.1007/978-981-15-5869-6_1) | [`jennifer-negotiation-2021`](https://github.com/monurkeskin/Lets-Negotiate-with-Jennifer-ACAN-2018) | `tsbt` |
+| [Solver Agent: Towards Emotional and Opponent-Aware Agent for Human-Robot Negotiation](https://www.ifaamas.org/Proceedings/aamas2021/pdfs/p1557.pdf) | [`solver-agent-2021`](https://github.com/monurkeskin/Solver-Agent-AAMAS-2021) | `solver-2021` |
+| [Would You Imagine Yourself Negotiating With a Robot, Jennifer? Why Not?](https://doi.org/10.1109/THMS.2021.3121664) | [`jennifer-negotiation-2022`](https://github.com/monurkeskin/Jennifer-Why-Not-THMS-2022) | `tsbt` |
+| [Effects of Agent's Embodiment in Human-Agent Negotiations](https://doi.org/10.1145/3570945.3607362) | [`agent-embodiment-2023`](https://github.com/monurkeskin/Effects-of-Agents-Embodiment-IVA-2023) | `hybrid` |
+| [You Look Nice, but I Am Here to Negotiate: The Influence of Robot Appearance on Negotiation Dynamics](https://doi.org/10.1145/3610978.3640759) | [`robot-appearance-2024`](https://github.com/monurkeskin/You-Look-Nice-but-I-Am-Here-to-Negotiate-HRI-2024) | `solver-2021` |
+| [An Adaptive Emotion-Aware Strategy for Human-Agent Negotiation: Insights from Real-World Human-Robot Experiments](https://doi.org/10.1145/3717511.3747087) | [`emotion-aware-negotiation-2025`](https://github.com/monurkeskin/An-Adaptive-Emotion-Aware-Strategy-IVA-2025) | `solver-2025` |
 
 Jennifer 2022 also includes BABT and separate tactic groups; emotion-aware 2025
 includes Hybrid as its comparator. Embodiment uses Hybrid, while Appearance uses

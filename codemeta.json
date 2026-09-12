@@ -3,7 +3,7 @@
   "@type": "SoftwareSourceCode",
   "name": "NEGOTIATOR: maintained human-agent negotiation framework",
   "version": "2.0.0",
-  "codeRepository": "https://github.com/monurkeskin/NEGOTIATOR",
+  "codeRepository": "https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024",
   "datePublished": "2026-09-12",
   "license": "https://spdx.org/licenses/GPL-3.0-only.html",
   "author": [

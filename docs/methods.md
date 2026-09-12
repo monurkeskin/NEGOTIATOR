@@ -83,6 +83,27 @@ notes for the equivalence scope. File hashes and selected assets are listed in
 
 ## Scientific changes in 2.0.0
 
+### Additional alignment notes
+
+The generic mood schedule follows the inspected legacy implementation; it is not
+identical to every paper's presentation specification. For example, the Embodiment
+paper gives .40/.60/.80 warning times, while that code variant uses .60/.73/.86.
+Paper companions document these distinctions rather than treating the absence of
+participant records as a method incompatibility.
+
+The current text interpreter recognizes domain vocabulary and explicit quantities.
+It does not implement the full historical grammar, recipient perspective or
+negation handling for allocation sentences. Use structured bids when these forms
+are needed and verify the displayed allocation before sending a text draft.
+
+The current generic terminal presentation can retain the preceding mood when a
+human accepts an offer; it does not yet guarantee the paper's Happy terminal mood.
+The agreement and its utilities are recorded separately from that presentation.
+This is a presentation defect identified by a synthetic session, not a change to
+the definition of agreement.
+
+### Version 2.0 method choices
+
 The 2025 paper's Algorithm `alg-solver` applies adaptation before generating the
 current offer. Version 2.0 follows that order, implements the Silent direction from
 `tbl-sensitivity`, and compares the generated bid with the estimated maximum-product

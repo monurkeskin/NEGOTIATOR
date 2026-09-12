@@ -35,3 +35,12 @@ not rerun. The practices follow the goals of the [NeurIPS checklist](https://neu
 [ICLR author guide](https://iclr.cc/Conferences/2026/AuthorGuide) and
 [ICML author instructions](https://icml.cc/Conferences/2026/AuthorInstructions).
 These are quality references, not venue certification or evidence of performance.
+
+## Restricted participant data
+
+Participant-level data need not be released publicly to use or extend this software.
+Access conditions, method/configuration fidelity and availability of analysis code
+are separate questions. Authorized researchers can work with permitted local inputs;
+synthetic fixtures support software and method checks without exposing participants.
+A missing historical-analysis implementation is documented as a code limitation,
+separately from whether its original inputs can be distributed.
