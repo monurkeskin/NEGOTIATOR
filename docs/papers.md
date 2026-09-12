@@ -24,8 +24,8 @@ and CONFIGURATIONS guides before a lab study: some historical assets, gestures,
 questionnaires and experiment identities remain unresolved. Synthetic practice
 and generated interactions are visibly labeled; they are not human-study results.
 
-The public [CBOM](https://github.com/monurkeskin/CBOM) repository separately documents
-the opponent-model implementation. [NegoLog V2](https://github.com/monurkeskin/NegoLogV2)
+The public [CBOM](https://github.com/monurkeskin/Conflict-Based-Negotiation-Strategy-Appl-Intell-2023) repository separately documents
+the opponent-model implementation. [NegoLog V2](https://github.com/monurkeskin/NegoLog-IJCAI-2024)
 serves automated agent tournaments; this framework's studies and reports are built
 around participants and individual sessions. Cite each component you actually use.
 
