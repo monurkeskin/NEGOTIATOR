@@ -1,0 +1,14 @@
+{
+  "nao": {
+    "command": ["/path/to/naoqi/python2.7", "/path/to/lab-bridges/naoqi_legacy.py", "--host", "nao.local", "--family", "nao"],
+    "family": "nao", "expected_runtime": "2.5.5.5", "capabilities": ["speech"], "timeout_seconds": 20
+  },
+  "pepper": {
+    "command": ["/path/to/naoqi/python2.7", "/path/to/lab-bridges/naoqi_legacy.py", "--host", "pepper.local", "--family", "pepper"],
+    "family": "pepper", "expected_runtime": "2.5.5.5", "capabilities": ["speech"], "timeout_seconds": 20
+  },
+  "qt": {
+    "command": ["/path/to/qt/python", "/path/to/lab-bridges/qt_legacy.py", "--host", "qtrobot.local", "--port", "9091"],
+    "family": "qt", "expected_runtime": "roslibpy-1.4.2:qt-ros1", "capabilities": ["speech"], "timeout_seconds": 20
+  }
+}

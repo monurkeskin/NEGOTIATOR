@@ -1,0 +1,64 @@
+{
+  "records": [
+    {
+      "study_id": "SYNTHETIC-solver-agent-2021",
+      "participant_id": "SYNTHETIC-0",
+      "session_id": "0-0",
+      "condition": "Solver",
+      "cohort": "synthetic-only",
+      "domain": "synthetic-comparable-domain",
+      "rounds": 6,
+      "utility": 0.8
+    },
+    {
+      "study_id": "SYNTHETIC-solver-agent-2021",
+      "participant_id": "SYNTHETIC-0",
+      "session_id": "0-1",
+      "condition": "Baseline",
+      "cohort": "synthetic-only",
+      "domain": "synthetic-comparable-domain",
+      "rounds": 6,
+      "utility": 0.4
+    },
+    {
+      "study_id": "SYNTHETIC-solver-agent-2021",
+      "participant_id": "SYNTHETIC-1",
+      "session_id": "1-2",
+      "condition": "Solver",
+      "cohort": "synthetic-only",
+      "domain": "synthetic-comparable-domain",
+      "rounds": 6,
+      "utility": 0.5
+    },
+    {
+      "study_id": "SYNTHETIC-solver-agent-2021",
+      "participant_id": "SYNTHETIC-1",
+      "session_id": "1-3",
+      "condition": "Baseline",
+      "cohort": "synthetic-only",
+      "domain": "synthetic-comparable-domain",
+      "rounds": 6,
+      "utility": 0.4
+    },
+    {
+      "study_id": "SYNTHETIC-solver-agent-2021",
+      "participant_id": "SYNTHETIC-2",
+      "session_id": "2-4",
+      "condition": "Solver",
+      "cohort": "synthetic-only",
+      "domain": "synthetic-comparable-domain",
+      "rounds": 6,
+      "utility": 0.6
+    },
+    {
+      "study_id": "SYNTHETIC-solver-agent-2021",
+      "participant_id": "SYNTHETIC-2",
+      "session_id": "2-5",
+      "condition": "Baseline",
+      "cohort": "synthetic-only",
+      "domain": "synthetic-comparable-domain",
+      "rounds": 6,
+      "utility": 0.8
+    }
+  ]
+}

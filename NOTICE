@@ -1,0 +1,16 @@
+NEGOTIATOR maintained implementation
+Copyright (c) 2026 Mehmet Onur Keskin and contributors
+
+This project builds on the published NEGOTIATOR framework and related negotiation
+strategies. The reference framework is berk buzcu/HumanRobotNego (GitHub account
+berkbuzcu), revision 0a2dd11ad324a057e7af9d2cd1cdccbf4c7bf499, distributed under
+the GNU General Public License version 3. Attribution for selected components and
+assets is recorded in provenance.json and accompanying method documentation.
+
+This distribution is licensed under GPL-3.0-only. Separate upstream notices are
+retained in licenses/. Maintained examples are functional demonstrations and do
+not assert reproduction of historical human studies.
+
+Report movement categories and utility-space concepts are adapted from public
+NegoLog / NegoLog V2 (Anil Dogru, Mehmet Onur Keskin and contributors), GPL-3.0.
+See provenance.json and docs/analysis.md for the selected revision and changes.

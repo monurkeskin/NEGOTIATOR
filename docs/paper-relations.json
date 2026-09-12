@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "interpretation": "Published conceptual and asset relationships; current integration is separate from historical experiment equivalence.",
+  "nodes": [
+    {"id":"jennifer-2021","label":"Jennifer · 2021\nSpeech / TSBT","position":[0.3,3.7]},
+    {"id":"jennifer-2022","label":"Jennifer · 2022\nGesture / TSBT-BABT","position":[3.15,3.7]},
+    {"id":"embodiment-2023","label":"Embodiment · 2023\nPhysical / virtual","position":[6,3.7]},
+    {"id":"appearance-2024","label":"Appearance · 2024\nNAO / Pepper / QT","position":[9,3.7]},
+    {"id":"solver-2021","label":"Solver · 2021\nEmotion / awareness","position":[0.3,1.75]},
+    {"id":"emotion-2025","label":"Emotion-aware · 2025\nAdaptive Solver","position":[9,1.75]}
+  ],
+  "edges": [
+    {"kind":"method","start":[2.45,4.1],"end":[3.04,4.1],"label":"extends","label_position":[2.75,4.45]},
+    {"kind":"method","start":[2.45,2.16],"end":[8.89,2.16],"label":"Solver method extension","label_position":[5.7,1.88]},
+    {"kind":"asset","start":[7.05,3.58],"end":[9.7,2.68],"label":"fruit point tables","label_position":[9.12,3.06]},
+    {"kind":"asset","start":[4.2,3.58],"end":[9.5,2.66],"rad":0.08,"label":"prior negotiation dataset for centroids","label_position":[6.1,2.87]}
+  ],
+  "sources": [
+    "https://doi.org/10.1007/978-981-15-5869-6_1",
+    "https://doi.org/10.1109/THMS.2021.3121664",
+    "https://www.ifaamas.org/Proceedings/aamas2021/pdfs/p1557.pdf",
+    "https://doi.org/10.1145/3570945.3607362",
+    "https://doi.org/10.1145/3610978.3640759",
+    "https://doi.org/10.1145/3717511.3747087",
+    "https://doi.org/10.24963/ijcai.2024/1012"
+  ]
+}

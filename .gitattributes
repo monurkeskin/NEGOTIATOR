@@ -1,0 +1,6 @@
+* text=auto eol=lf
+# Verbatim upstream components retain their published source hashes on every OS.
+src/negotiator/data/** -text
+src/negotiator/_vendor/cbom/model.py -text
+src/negotiator/_vendor/cbom/preferences.py -text
+*.png binary

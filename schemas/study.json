@@ -1,0 +1,570 @@
+{
+  "$defs": {
+    "Condition": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "default": "Condition A",
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "strategy": {
+          "default": "hybrid",
+          "title": "Strategy",
+          "type": "string"
+        },
+        "duration_seconds": {
+          "default": 600.0,
+          "exclusiveMinimum": 0,
+          "maximum": 86400,
+          "title": "Duration Seconds",
+          "type": "number"
+        },
+        "practice": {
+          "default": false,
+          "title": "Practice",
+          "type": "boolean"
+        },
+        "output": {
+          "anyOf": [
+            {
+              "enum": [
+                "text",
+                "avatar",
+                "nao",
+                "pepper",
+                "qt"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output"
+        },
+        "domain": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Domain"
+        },
+        "output_device": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output Device"
+        },
+        "human_profile": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Human Profile"
+        },
+        "agent_profile": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Agent Profile"
+        },
+        "block": {
+          "anyOf": [
+            {
+              "maxLength": 100,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Block"
+        },
+        "break_after_seconds": {
+          "default": 0.0,
+          "maximum": 86400,
+          "minimum": 0,
+          "title": "Break After Seconds",
+          "type": "number"
+        },
+        "gestures": {
+          "default": true,
+          "title": "Gestures",
+          "type": "boolean"
+        },
+        "score_targets": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Score Targets",
+          "type": "object"
+        },
+        "reward_minimums": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Reward Minimums",
+          "type": "object"
+        },
+        "strategy_parameters": {
+          "additionalProperties": true,
+          "title": "Strategy Parameters",
+          "type": "object"
+        },
+        "mood_policy": {
+          "default": "generic",
+          "enum": [
+            "generic",
+            "jennifer-2021",
+            "jennifer-2022"
+          ],
+          "title": "Mood Policy",
+          "type": "string"
+        },
+        "mood_parameters": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Mood Parameters",
+          "type": "object"
+        }
+      },
+      "title": "Condition",
+      "type": "object"
+    },
+    "PositionProfiles": {
+      "additionalProperties": false,
+      "properties": {
+        "human_profile": {
+          "additionalProperties": true,
+          "title": "Human Profile",
+          "type": "object"
+        },
+        "agent_profile": {
+          "additionalProperties": true,
+          "title": "Agent Profile",
+          "type": "object"
+        }
+      },
+      "required": [
+        "human_profile",
+        "agent_profile"
+      ],
+      "title": "PositionProfiles",
+      "type": "object"
+    },
+    "ProtocolReference": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 150,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "revision": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Revision",
+          "type": "string"
+        },
+        "paper": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Paper",
+          "type": "string"
+        },
+        "configuration_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Configuration Sha256"
+        },
+        "requirements": {
+          "items": {
+            "$ref": "#/$defs/ProtocolRequirement"
+          },
+          "title": "Requirements",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "paper"
+      ],
+      "title": "ProtocolReference",
+      "type": "object"
+    },
+    "ProtocolRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Path"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        }
+      },
+      "required": [
+        "id",
+        "description"
+      ],
+      "title": "ProtocolRequirement",
+      "type": "object"
+    },
+    "SurveyItem": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "prompt": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Prompt",
+          "type": "string"
+        },
+        "minimum": {
+          "default": 1,
+          "title": "Minimum",
+          "type": "integer"
+        },
+        "maximum": {
+          "default": 7,
+          "title": "Maximum",
+          "type": "integer"
+        },
+        "phase": {
+          "default": "post_session",
+          "enum": [
+            "pre_study",
+            "pre_session",
+            "post_session",
+            "post_study"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "required": {
+          "default": true,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "include_practice": {
+          "default": false,
+          "title": "Include Practice",
+          "type": "boolean"
+        },
+        "source": {
+          "default": "researcher supplied",
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "prompt"
+      ],
+      "title": "SurveyItem",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "study_id": {
+      "default": "study",
+      "title": "Study Id",
+      "type": "string"
+    },
+    "participant_id": {
+      "default": "P001",
+      "title": "Participant Id",
+      "type": "string"
+    },
+    "title": {
+      "default": "Negotiation study",
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "instructions": {
+      "default": "Agree on an offer that meets your preferences before the time ends.",
+      "maxLength": 10000,
+      "title": "Instructions",
+      "type": "string"
+    },
+    "domain": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "additionalProperties": true,
+          "type": "object"
+        }
+      ],
+      "default": "holiday",
+      "title": "Domain"
+    },
+    "preference_mode": {
+      "default": "elicited",
+      "enum": [
+        "elicited",
+        "assigned"
+      ],
+      "title": "Preference Mode",
+      "type": "string"
+    },
+    "human_profile": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Human Profile"
+    },
+    "agent_profile": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Agent Profile"
+    },
+    "conditions": {
+      "items": {
+        "$ref": "#/$defs/Condition"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Conditions",
+      "type": "array"
+    },
+    "order": {
+      "default": "as_entered",
+      "enum": [
+        "as_entered",
+        "reversed",
+        "counterbalanced"
+      ],
+      "title": "Order",
+      "type": "string"
+    },
+    "participant_index": {
+      "default": 1,
+      "minimum": 1,
+      "title": "Participant Index",
+      "type": "integer"
+    },
+    "cohort": {
+      "default": "default",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Cohort",
+      "type": "string"
+    },
+    "seed": {
+      "default": 42,
+      "title": "Seed",
+      "type": "integer"
+    },
+    "first_actor": {
+      "default": "human",
+      "enum": [
+        "human",
+        "agent"
+      ],
+      "title": "First Actor",
+      "type": "string"
+    },
+    "interaction_protocol": {
+      "default": "direct-offer",
+      "enum": [
+        "direct-offer",
+        "ready-offer-response"
+      ],
+      "title": "Interaction Protocol",
+      "type": "string"
+    },
+    "output": {
+      "default": "text",
+      "enum": [
+        "text",
+        "avatar",
+        "nao",
+        "pepper",
+        "qt"
+      ],
+      "title": "Output",
+      "type": "string"
+    },
+    "speech_device": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Speech Device"
+    },
+    "perception_device": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Perception Device"
+    },
+    "manual_affect": {
+      "default": false,
+      "title": "Manual Affect",
+      "type": "boolean"
+    },
+    "synthetic": {
+      "default": false,
+      "title": "Synthetic",
+      "type": "boolean"
+    },
+    "citation_ids": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Citation Ids",
+      "type": "array"
+    },
+    "purpose": {
+      "default": "demonstration",
+      "enum": [
+        "demonstration",
+        "published-protocol",
+        "custom-study"
+      ],
+      "title": "Purpose",
+      "type": "string"
+    },
+    "protocol": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ProtocolReference"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "position_profiles": {
+      "items": {
+        "$ref": "#/$defs/PositionProfiles"
+      },
+      "maxItems": 20,
+      "title": "Position Profiles",
+      "type": "array"
+    },
+    "surveys": {
+      "items": {
+        "$ref": "#/$defs/SurveyItem"
+      },
+      "maxItems": 200,
+      "title": "Surveys",
+      "type": "array"
+    }
+  },
+  "title": "StudySpec",
+  "type": "object"
+}

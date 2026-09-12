@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "components": [
+    {
+      "component": "NEGOTIATOR framework reference",
+      "repository": "https://github.com/berkbuzcu/HumanRobotNego",
+      "revision": "0a2dd11ad324a057e7af9d2cd1cdccbf4c7bf499",
+      "license": "GPL-3.0",
+      "selected_files": [
+        {
+          "path": "LICENSE",
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+        },
+        {
+          "path": "domains/Holiday_A/Holiday_A.xml",
+          "destination": "src/negotiator/data/domains/Holiday_A.xml",
+          "sha256": "b4ea0f8d295fe5d55c20f258ddcccf9c6bb7bebfa304da0509c56bb721115f83"
+        },
+        {
+          "path": "domains/Fruits/Fruits.xml",
+          "destination": "src/negotiator/data/domains/Fruits.xml",
+          "sha256": "91e3cf5e253eed3200b9a7a04e23c98e3d09183e9baf63eda64587940da3b400"
+        },
+        {
+          "path": "domains/Island/Island.xml",
+          "destination": "src/negotiator/data/domains/Island.xml",
+          "sha256": "6cf6df1d0393d08f5d484e03e39f724fd2f8008b772894fe08e2741c0f54ff24"
+        },
+        {
+          "path": "domains/Holiday_B/Holiday_B.xml",
+          "destination": "src/negotiator/data/domains/Holiday_B.xml",
+          "sha256": "b92b267fc9f773d72b8856bcb41160dfa6ab243113bebdffe90f72ab450e2e48"
+        }
+      ],
+      "adapted_sources": [
+        "human_robot_negotiation/agent/solver_agent/solver_agent/mood_controller.py",
+        "human_robot_negotiation/robot_server/nao/nao/nao_robot.py",
+        "human_robot_negotiation/robot_server/qt/qt/qt_robot.py",
+        "human_robot_negotiation/emotion_analysis/emotion_analysis/FaceChannel/FaceChannel/FaceChannelV1/FaceChannelV1.py",
+        "human_robot_negotiation/emotion_analysis/emotion_analysis/FaceChannel/FaceChannel/FaceChannelV1/imageProcessingUtil.py"
+      ]
+    },
+    {
+      "component": "CBOM opponent model",
+      "repository": "https://github.com/monurkeskin/CBOM",
+      "revision": "41345ae4fee8c95c0dd641c7b80a43eb015422da",
+      "license": "GPL-3.0-only",
+      "selected_files": [
+        {
+          "path": "src/cbom/model.py",
+          "destination": "src/negotiator/_vendor/cbom/model.py",
+          "sha256": "55ccd9bd766d7218b46450bf95590ab6fa2cac851e6783e0421b113ef37c5fec"
+        },
+        {
+          "path": "src/cbom/preferences.py",
+          "destination": "src/negotiator/_vendor/cbom/preferences.py",
+          "sha256": "20d89a9fe7b4215b03a2a56d566da18bf5826c91a1e8ab3a5ef75b14698deb62"
+        }
+      ]
+    },
+    {
+      "component": "Legacy Solver sensitivity centroids",
+      "authors": [
+        "Mehmet Onur Keskin",
+        "Umut Çakan",
+        "Reyhan Aydoğan"
+      ],
+      "source_revision": "9d2ffbe8bcfbde5d21ea2d27b243addfd8230bb1",
+      "source_path": "Agent/Solver_Agent/kmeans.json",
+      "selected_files": [
+        {
+          "destination": "src/negotiator/data/solver-centroids.json",
+          "sha256": "0aa7b292e53ef6f70511ef1f7341e26cf0ce1642a45d79adcc074db948b95777"
+        }
+      ],
+      "distribution": "Released by the maintainer with the older Solver implementation; GPL-3.0-only in this distribution."
+    },
+    {
+      "component": "Report movement categories and utility-space concepts",
+      "repository": "https://github.com/monurkeskin/NegoLogV2",
+      "revision": "f7a4f88c6c9e3214f3a7a82fc8ebd2551ee6fa8f",
+      "license": "GPL-3.0",
+      "adapted_sources": [
+        "nenv/utils/Move.py",
+        "nenv/BidSpace.py"
+      ],
+      "changes": "Independent offline metrics; explicit missingness; maximum sum labeled social welfare, raw and surplus Nash separated; no tournament architecture."
+    }
+  ]
+}

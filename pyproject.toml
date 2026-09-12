@@ -1,0 +1,64 @@
+[build-system]
+requires = ["hatchling==1.32.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "negotiator-human"
+version = "2.0.0"
+description = "A local framework for human-agent and human-robot negotiation studies"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "GPL-3.0-only"
+license-files = ["LICENSE", "NOTICE", "licenses/*"]
+authors = [{name = "Mehmet Onur Keskin"}]
+dependencies = [
+  "defusedxml>=0.7.1,<1",
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+  "matplotlib>=3.9,<4",
+  "openpyxl>=3.1,<4",
+]
+
+[project.urls]
+Repository = "https://github.com/monurkeskin/NEGOTIATOR"
+Issues = "https://github.com/monurkeskin/NEGOTIATOR/issues"
+
+[project.scripts]
+negotiator = "negotiator.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8.3,<10", "pytest-cov>=6,<8", "httpx>=0.28,<1", "ruff>=0.12,<1", "mypy>=1.15,<2", "build>=1.2,<2", "types-defusedxml>=0.7,<1", "types-openpyxl>=3.1,<4"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/negotiator"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"provenance.json" = "negotiator/provenance.json"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["src/negotiator/_vendor/cbom/model.py", "src/negotiator/_vendor/cbom/preferences.py", "src/negotiator/bridges/naoqi_legacy.py", "src/negotiator/bridges/protocol.py"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+exclude = ["src/negotiator/_vendor/cbom/model.py", "src/negotiator/_vendor/cbom/preferences.py", "src/negotiator/bridges/"]
+
+[tool.coverage.run]
+branch = true
+source = ["negotiator"]
+
+[tool.coverage.report]
+show_missing = true
+
+[[tool.mypy.overrides]]
+module = ["negotiator.bridges.*"]
+ignore_errors = true

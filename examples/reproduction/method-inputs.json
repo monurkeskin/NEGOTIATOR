@@ -1,0 +1,38 @@
+{
+  "cases": [
+    {
+      "id": "time-start",
+      "operation": "time",
+      "arguments": {
+        "t": 0
+      }
+    },
+    {
+      "id": "time-midpoint",
+      "operation": "time",
+      "arguments": {
+        "t": 0.5
+      }
+    },
+    {
+      "id": "time-deadline",
+      "operation": "time",
+      "arguments": {
+        "t": 1
+      }
+    },
+    {
+      "id": "solver-step",
+      "operation": "solver-behavior",
+      "arguments": {
+        "previous": 0.8,
+        "differences": [
+          0.1
+        ],
+        "t": 0.5,
+        "awareness": 0.5,
+        "emotion": 0.165
+      }
+    }
+  ]
+}

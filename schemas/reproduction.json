@@ -1,0 +1,196 @@
+{
+  "$defs": {
+    "EnvironmentSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "framework": {
+          "minLength": 1,
+          "title": "Framework",
+          "type": "string"
+        },
+        "python": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Python"
+        }
+      },
+      "required": [
+        "framework"
+      ],
+      "title": "EnvironmentSpec",
+      "type": "object"
+    },
+    "ExpectedResult": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "minLength": 1,
+          "title": "Key",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        },
+        "atol": {
+          "default": 1e-12,
+          "minimum": 0,
+          "title": "Atol",
+          "type": "number"
+        },
+        "rtol": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Rtol",
+          "type": "number"
+        },
+        "source": {
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "value",
+        "source"
+      ],
+      "title": "ExpectedResult",
+      "type": "object"
+    },
+    "InputSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Path"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "missing_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Missing Reason"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "InputSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "paper_id": {
+      "minLength": 1,
+      "title": "Paper Id",
+      "type": "string"
+    },
+    "result_id": {
+      "minLength": 1,
+      "title": "Result Id",
+      "type": "string"
+    },
+    "claim_scope": {
+      "enum": [
+        "synthetic-validation",
+        "published-method",
+        "published-result"
+      ],
+      "title": "Claim Scope",
+      "type": "string"
+    },
+    "analysis": {
+      "enum": [
+        "profile-space",
+        "paired-summary",
+        "method-vectors"
+      ],
+      "title": "Analysis",
+      "type": "string"
+    },
+    "inputs": {
+      "items": {
+        "$ref": "#/$defs/InputSpec"
+      },
+      "minItems": 1,
+      "title": "Inputs",
+      "type": "array"
+    },
+    "parameters": {
+      "additionalProperties": true,
+      "title": "Parameters",
+      "type": "object"
+    },
+    "environment": {
+      "$ref": "#/$defs/EnvironmentSpec"
+    },
+    "expected": {
+      "items": {
+        "$ref": "#/$defs/ExpectedResult"
+      },
+      "title": "Expected",
+      "type": "array"
+    },
+    "description": {
+      "default": "",
+      "title": "Description",
+      "type": "string"
+    }
+  },
+  "required": [
+    "paper_id",
+    "result_id",
+    "claim_scope",
+    "analysis",
+    "inputs",
+    "environment"
+  ],
+  "title": "ReproductionSpec",
+  "type": "object"
+}

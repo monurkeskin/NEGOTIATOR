@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "paper_id": "NEGOTIATOR",
+  "result_id": "synthetic-paired-analysis",
+  "claim_scope": "synthetic-validation",
+  "analysis": "paired-summary",
+  "environment": {
+    "framework": "2.0.0"
+  },
+  "parameters": {
+    "conditions": [
+      "Solver",
+      "Baseline"
+    ],
+    "minimum_rounds": 0,
+    "seed": 42,
+    "bootstrap_samples": 2000
+  },
+  "inputs": [
+    {
+      "id": "synthetic-participants",
+      "path": "paired-inputs.json",
+      "sha256": "0e3498b472816c4738d94bd21ed882b69e3748bbbbcdbfc725f954d71dcc8cb3"
+    }
+  ],
+  "expected": [
+    {
+      "key": "complete_pairs",
+      "value": 3,
+      "source": "Three explicitly constructed paired fixture participants"
+    }
+  ],
+  "description": "Analysis-contract demonstration. Percentile participant bootstrap is a maintained analysis example, not a claim to recover the paper significance test."
+}

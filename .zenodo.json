@@ -1,0 +1,20 @@
+{
+  "title": "NEGOTIATOR: maintained human-agent negotiation framework",
+  "version": "2.0.0",
+  "upload_type": "software",
+  "description": "Maintained research software for NEGOTIATOR: A Comprehensive Framework for Human-Agent Negotiation Integrating Preferences, Interaction, and Emotion. Reproducibility scope and source provenance are documented in the repository.",
+  "creators": [
+    {
+      "name": "Keskin, Mehmet Onur"
+    }
+  ],
+  "license": "GPL-3.0-only",
+  "related_identifiers": [
+    {
+      "identifier": "10.24963/ijcai.2024/1012",
+      "relation": "isSupplementTo",
+      "scheme": "doi"
+    }
+  ],
+  "doi": "10.5281/zenodo.22728983"
+}

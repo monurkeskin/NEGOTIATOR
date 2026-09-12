@@ -1,0 +1,52 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Please cite the framework paper when using this software, and the relevant method papers for their components.",
+  "title": "NEGOTIATOR: maintained human-agent negotiation framework",
+  "type": "software",
+  "version": "2.0.0",
+  "date-released": "2026-09-12",
+  "license": "GPL-3.0-only",
+  "repository-code": "https://github.com/monurkeskin/NEGOTIATOR",
+  "authors": [
+    {
+      "given-names": "Mehmet Onur",
+      "family-names": "Keskin"
+    }
+  ],
+  "doi": "10.5281/zenodo.22728983",
+  "preferred-citation": {
+    "type": "conference-paper",
+    "title": "NEGOTIATOR: A Comprehensive Framework for Human-Agent Negotiation Integrating Preferences, Interaction, and Emotion",
+    "authors": [
+      {
+        "given-names": "Mehmet Onur",
+        "family-names": "Keskin"
+      },
+      {
+        "given-names": "Berk",
+        "family-names": "Buzcu"
+      },
+      {
+        "given-names": "Berkecan",
+        "family-names": "Koçyiğit"
+      },
+      {
+        "given-names": "Umut",
+        "family-names": "Çakan"
+      },
+      {
+        "given-names": "Anıl",
+        "family-names": "Doğru"
+      },
+      {
+        "given-names": "Reyhan",
+        "family-names": "Aydoğan"
+      }
+    ],
+    "year": 2024,
+    "doi": "10.24963/ijcai.2024/1012",
+    "conference": {
+      "name": "Thirty-Third International Joint Conference on Artificial Intelligence"
+    }
+  }
+}

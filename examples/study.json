@@ -1,0 +1,14 @@
+{
+  "study_id": "synthetic-study",
+  "participant_id": "SYNTHETIC001",
+  "synthetic": true,
+  "title": "Synthetic two-session example",
+  "domain": "holiday",
+  "preference_mode": "assigned",
+  "conditions": [
+    {"label": "Hybrid", "strategy": "hybrid", "duration_seconds": 600},
+    {"label": "Solver", "strategy": "solver-2021", "duration_seconds": 600}
+  ],
+  "output": "text",
+  "surveys": [{"id":"synthetic-rating", "prompt":"Synthetic example: rate the interaction.", "minimum":1, "maximum":7, "phase":"post_session", "source":"Synthetic software test; not a validated instrument"}]
+}

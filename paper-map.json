@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "repository": "NEGOTIATOR",
+  "paper": {
+    "type": "conference-paper",
+    "title": "NEGOTIATOR: A Comprehensive Framework for Human-Agent Negotiation Integrating Preferences, Interaction, and Emotion",
+    "authors": [
+      {
+        "given-names": "Mehmet Onur",
+        "family-names": "Keskin"
+      },
+      {
+        "given-names": "Berk",
+        "family-names": "Buzcu"
+      },
+      {
+        "given-names": "Berkecan",
+        "family-names": "Koçyiğit"
+      },
+      {
+        "given-names": "Umut",
+        "family-names": "Çakan"
+      },
+      {
+        "given-names": "Anıl",
+        "family-names": "Doğru"
+      },
+      {
+        "given-names": "Reyhan",
+        "family-names": "Aydoğan"
+      }
+    ],
+    "year": 2024,
+    "doi": "10.24963/ijcai.2024/1012",
+    "conference": {
+      "name": "Thirty-Third International Joint Conference on Artificial Intelligence"
+    }
+  },
+  "requirements": [
+    {
+      "id": "domain-utility",
+      "axis": "protocol",
+      "requirement": "Allocation/categorical domains, independent preferences and utility",
+      "status": "full",
+      "critical": false,
+      "sources": [
+        {
+          "entry": "main.tex",
+          "file": "Sections/ProposedFramework.tex",
+          "sha256": "c87226eb24de193e42a52f4aff729a304993337caf0f95b38021e37390bbbe05",
+          "label": "table:config",
+          "line": 36,
+          "nearby_graphics": []
+        }
+      ],
+      "implementation": [
+        "negotiator.domain"
+      ],
+      "tests": [
+        {
+          "repository": "framework",
+          "path": "tests/test_domain.py"
+        },
+        {
+          "repository": "framework",
+          "path": "tests/test_scoring.py"
+        }
+      ],
+      "result_target": null,
+      "explanation": "Canonical human-share bids, exhaustive small domains, targets distinct from rewards.",
+      "documentation": "docs/methods.md"
+    },
+    {
+      "id": "component-replacement",
+      "axis": "method",
+      "requirement": "Replaceable agent and adapter components",
+      "status": "full",
+      "critical": false,
+      "sources": [
+        {
+          "entry": "main.tex",
+          "file": "Sections/ProposedFramework.tex",
+          "sha256": "c87226eb24de193e42a52f4aff729a304993337caf0f95b38021e37390bbbe05",
+          "label": "table:config",
+          "line": 36,
+          "nearby_graphics": []
+        }
+      ],
+      "implementation": [
+        "negotiator.strategies.Agent",
+        "negotiator.adapters.process"
+      ],
+      "tests": [
+        {
+          "repository": "framework",
+          "path": "tests/test_adapters.py"
+        },
+        {
+          "repository": "framework",
+          "path": "tests/test_protocol_failures.py"
+        }
+      ],
+      "result_target": null,
+      "explanation": "Typed decision boundary and process protocol/version/capability tests; legacy RabbitMQ byte compatibility is outside support.",
+      "documentation": "docs/methods.md"
+    },
+    {
+      "id": "protocol-gui",
+      "axis": "protocol",
+      "requirement": "Conductor and participant configuration, elicitation and session lifecycle",
+      "status": "full",
+      "critical": false,
+      "sources": [
+        {
+          "entry": "main.tex",
+          "file": "Sections/ProposedFramework.tex",
+          "sha256": "c87226eb24de193e42a52f4aff729a304993337caf0f95b38021e37390bbbe05",
+          "label": "table:config",
+          "line": 36,
+          "nearby_graphics": []
+        }
+      ],
+      "implementation": [
+        "negotiator.application",
+        "negotiator.web"
+      ],
+      "tests": [
+        {
+          "repository": "framework",
+          "path": "tests/test_study_protocols.py"
+        },
+        {
+          "repository": "framework",
+          "path": "tests/test_web.py"
+        },
+        {
+          "repository": "framework",
+          "path": "frontend/tests/study.spec.ts"
+        }
+      ],
+      "result_target": null,
+      "explanation": "Durable session state, input stages, timed breaks, readonly completed results and preflight configuration checks.",
+      "documentation": "docs/methods.md"
+    },
+    {
+      "id": "published-models",
+      "axis": "method",
+      "requirement": "Selectable published strategy and emotion components",
+      "status": "partial",
+      "critical": true,
+      "sources": [
+        {
+          "entry": "main.tex",
+          "file": "Sections/ProposedFramework.tex",
+          "sha256": "c87226eb24de193e42a52f4aff729a304993337caf0f95b38021e37390bbbe05",
+          "label": "table:config",
+          "line": 36,
+          "nearby_graphics": []
+        }
+      ],
+      "implementation": [
+        "negotiator.strategies",
+        "negotiator.interaction"
+      ],
+      "tests": [
+        {
+          "repository": "framework",
+          "path": "tests/test_strategies.py"
+        },
+        {
+          "repository": "framework",
+          "path": "tests/test_observation_windows.py"
+        }
+      ],
+      "result_target": null,
+      "explanation": "Maintained categorical policies are tested; historical personalized models and all original assets are not distributed.",
+      "documentation": "docs/methods.md"
+    },
+    {
+      "id": "robot-runtime",
+      "axis": "runnability",
+      "requirement": "NAO, Pepper, QT and avatar presentation",
+      "status": "partial",
+      "critical": true,
+      "sources": [
+        {
+          "entry": "main.tex",
+          "file": "Sections/ProposedFramework.tex",
+          "sha256": "c87226eb24de193e42a52f4aff729a304993337caf0f95b38021e37390bbbe05",
+          "label": "table:config",
+          "line": 36,
+          "nearby_graphics": []
+        }
+      ],
+      "implementation": [
+        "negotiator.bridges",
+        "negotiator.interaction.presentation"
+      ],
+      "tests": [
+        {
+          "repository": "framework",
+          "path": "tests/test_adapters.py"
+        },
+        {
+          "repository": "framework",
+          "path": "tests/test_protocol_failures.py"
+        }
+      ],
+      "result_target": null,
+      "explanation": "Local process simulation verifies failure contracts. Real SDK/firmware/robot behavior remains unverified.",
+      "documentation": "docs/methods.md"
+    },
+    {
+      "id": "logging-analysis",
+      "axis": "analysis",
+      "requirement": "Consistent event log, recovery and per-participant analysis",
+      "status": "full",
+      "critical": false,
+      "sources": [
+        {
+          "entry": "main.tex",
+          "file": "Sections/ProposedFramework.tex",
+          "sha256": "c87226eb24de193e42a52f4aff729a304993337caf0f95b38021e37390bbbe05",
+          "label": "table:config",
+          "line": 36,
+          "nearby_graphics": []
+        }
+      ],
+      "implementation": [
+        "negotiator.events",
+        "negotiator.analysis",
+        "negotiator.reproduction"
+      ],
+      "tests": [
+        {
+          "repository": "framework",
+          "path": "tests/test_sessions.py"
+        },
+        {
+          "repository": "framework",
+          "path": "tests/test_analysis.py"
+        },
+        {
+          "repository": "framework",
+          "path": "tests/test_reproduction.py"
+        }
+      ],
+      "result_target": null,
+      "explanation": "Synthetic and deterministic fixtures verify lifecycle and analyses; no historical human-result claim.",
+      "documentation": "docs/methods.md"
+    },
+    {
+      "id": "distribution",
+      "axis": "runnability",
+      "requirement": "Standalone wheel, documented installation and extension path",
+      "status": "full",
+      "critical": false,
+      "sources": [
+        {
+          "entry": "main.tex",
+          "file": "Sections/ProposedFramework.tex",
+          "sha256": "c87226eb24de193e42a52f4aff729a304993337caf0f95b38021e37390bbbe05",
+          "label": "table:config",
+          "line": 36,
+          "nearby_graphics": []
+        }
+      ],
+      "implementation": [
+        "pyproject.toml",
+        "README.md",
+        "docs/"
+      ],
+      "tests": [
+        {
+          "repository": "framework",
+          "path": "tests/test_cli.py"
+        },
+        {
+          "repository": "framework",
+          "path": "tests/test_release_contract.py"
+        }
+      ],
+      "result_target": null,
+      "explanation": "CI and clean-install gates are attached to the final revision; software support is scoped explicitly.",
+      "documentation": "docs/methods.md"
+    }
+  ]
+}

@@ -1,0 +1,457 @@
+{
+  "schema_version": 1,
+  "records": {
+    "NEGOTIATOR": {
+      "id": "NEGOTIATOR",
+      "bibtex_key": "keskin2024negotiator",
+      "paper": {
+        "type": "conference-paper",
+        "title": "NEGOTIATOR: A Comprehensive Framework for Human-Agent Negotiation Integrating Preferences, Interaction, and Emotion",
+        "authors": [
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          },
+          {
+            "given-names": "Berk",
+            "family-names": "Buzcu"
+          },
+          {
+            "given-names": "Berkecan",
+            "family-names": "Koçyiğit"
+          },
+          {
+            "given-names": "Umut",
+            "family-names": "Çakan"
+          },
+          {
+            "given-names": "Anıl",
+            "family-names": "Doğru"
+          },
+          {
+            "given-names": "Reyhan",
+            "family-names": "Aydoğan"
+          }
+        ],
+        "year": 2024,
+        "doi": "10.24963/ijcai.2024/1012",
+        "conference": {
+          "name": "Thirty-Third International Joint Conference on Artificial Intelligence"
+        }
+      },
+      "software": {
+        "cff-version": "1.2.0",
+        "message": "Please cite the framework paper when using this software, and the relevant method papers for their components.",
+        "title": "NEGOTIATOR: maintained human-agent negotiation framework",
+        "type": "software",
+        "version": "2.0.0",
+        "date-released": "2026-09-12",
+        "license": "GPL-3.0-only",
+        "repository-code": "https://github.com/monurkeskin/NEGOTIATOR",
+        "authors": [
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          }
+        ],
+        "doi": "10.5281/zenodo.22728983"
+      }
+    },
+    "jennifer-negotiation-2021": {
+      "id": "jennifer-negotiation-2021",
+      "bibtex_key": "jennifernegotiation2021",
+      "paper": {
+        "type": "conference-paper",
+        "title": "Let's Negotiate with Jennifer! Towards a Speech-Based Human-Robot Negotiation",
+        "authors": [
+          {
+            "given-names": "Reyhan",
+            "family-names": "Aydoğan"
+          },
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          },
+          {
+            "given-names": "Umut",
+            "family-names": "Çakan"
+          }
+        ],
+        "year": 2021,
+        "url": "https://doi.org/10.1007/978-981-15-5869-6_1",
+        "doi": "10.1007/978-981-15-5869-6_1"
+      },
+      "software": {
+        "cff-version": "1.2.0",
+        "message": "Please cite the associated paper, and NEGOTIATOR for the framework. Record the software version used.",
+        "type": "software",
+        "title": "Let's Negotiate with Jennifer! Towards a Speech-Based Human-Robot Negotiation — maintained code companion",
+        "authors": [
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          }
+        ],
+        "version": "2.0.0",
+        "date-released": "2026-09-12",
+        "license": "GPL-3.0-only",
+        "repository-code": "https://github.com/monurkeskin/jennifer-negotiation-2021",
+        "doi": "10.5281/zenodo.22729002"
+      }
+    },
+    "emotion-aware-negotiation-2025": {
+      "id": "emotion-aware-negotiation-2025",
+      "bibtex_key": "emotionawarenegotiation2025",
+      "paper": {
+        "type": "conference-paper",
+        "title": "An Adaptive Emotion-Aware Strategy for Human-Agent Negotiation: Insights from Real-World Human-Robot Experiments",
+        "authors": [
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          },
+          {
+            "given-names": "Umut",
+            "family-names": "Çakan"
+          },
+          {
+            "given-names": "Reyhan",
+            "family-names": "Aydoğan"
+          }
+        ],
+        "year": 2025,
+        "url": "https://doi.org/10.1145/3717511.3747087",
+        "doi": "10.1145/3717511.3747087"
+      },
+      "software": {
+        "cff-version": "1.2.0",
+        "message": "Please cite the associated paper, and NEGOTIATOR for the framework. Record the software version used.",
+        "type": "software",
+        "title": "An Adaptive Emotion-Aware Strategy for Human-Agent Negotiation: Insights from Real-World Human-Robot Experiments — maintained code companion",
+        "authors": [
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          }
+        ],
+        "version": "2.0.0",
+        "date-released": "2026-09-12",
+        "license": "GPL-3.0-only",
+        "repository-code": "https://github.com/monurkeskin/emotion-aware-negotiation-2025",
+        "doi": "10.5281/zenodo.22729000"
+      }
+    },
+    "robot-appearance-2024": {
+      "id": "robot-appearance-2024",
+      "bibtex_key": "robotappearance2024",
+      "paper": {
+        "type": "conference-paper",
+        "title": "You Look Nice, but I Am Here to Negotiate: The Influence of Robot Appearance on Negotiation Dynamics",
+        "authors": [
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          },
+          {
+            "given-names": "Selen",
+            "family-names": "Akay"
+          },
+          {
+            "given-names": "Ayşe",
+            "family-names": "Doğan"
+          },
+          {
+            "given-names": "Berkecan",
+            "family-names": "Koçyiğit"
+          },
+          {
+            "given-names": "Junko",
+            "family-names": "Kanero"
+          },
+          {
+            "given-names": "Reyhan",
+            "family-names": "Aydoğan"
+          }
+        ],
+        "year": 2024,
+        "url": "https://doi.org/10.1145/3610978.3640759",
+        "doi": "10.1145/3610978.3640759"
+      },
+      "software": {
+        "cff-version": "1.2.0",
+        "message": "Please cite the associated paper, and NEGOTIATOR for the framework. Record the software version used.",
+        "type": "software",
+        "title": "You Look Nice, but I Am Here to Negotiate: The Influence of Robot Appearance on Negotiation Dynamics — maintained code companion",
+        "authors": [
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          }
+        ],
+        "version": "2.0.0",
+        "date-released": "2026-09-12",
+        "license": "GPL-3.0-only",
+        "repository-code": "https://github.com/monurkeskin/robot-appearance-2024",
+        "doi": "10.5281/zenodo.22729006"
+      }
+    },
+    "agent-embodiment-2023": {
+      "id": "agent-embodiment-2023",
+      "bibtex_key": "agentembodiment2023",
+      "paper": {
+        "type": "conference-paper",
+        "title": "Effects of Agent's Embodiment in Human-Agent Negotiations",
+        "authors": [
+          {
+            "given-names": "Umut",
+            "family-names": "Çakan"
+          },
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          },
+          {
+            "given-names": "Reyhan",
+            "family-names": "Aydoğan"
+          }
+        ],
+        "year": 2023,
+        "url": "https://doi.org/10.1145/3570945.3607362",
+        "doi": "10.1145/3570945.3607362"
+      },
+      "software": {
+        "cff-version": "1.2.0",
+        "message": "Please cite the associated paper, and NEGOTIATOR for the framework. Record the software version used.",
+        "type": "software",
+        "title": "Effects of Agent's Embodiment in Human-Agent Negotiations — maintained code companion",
+        "authors": [
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          }
+        ],
+        "version": "2.0.0",
+        "date-released": "2026-09-12",
+        "license": "GPL-3.0-only",
+        "repository-code": "https://github.com/monurkeskin/agent-embodiment-2023",
+        "doi": "10.5281/zenodo.22728998"
+      }
+    },
+    "solver-agent-2021": {
+      "id": "solver-agent-2021",
+      "bibtex_key": "solveragent2021",
+      "paper": {
+        "type": "conference-paper",
+        "title": "Solver Agent: Towards Emotional and Opponent-Aware Agent for Human-Robot Negotiation",
+        "authors": [
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          },
+          {
+            "given-names": "Umut",
+            "family-names": "Çakan"
+          },
+          {
+            "given-names": "Reyhan",
+            "family-names": "Aydoğan"
+          }
+        ],
+        "year": 2021,
+        "url": "https://www.ifaamas.org/Proceedings/aamas2021/pdfs/p1557.pdf"
+      },
+      "software": {
+        "cff-version": "1.2.0",
+        "message": "Please cite the associated paper, and NEGOTIATOR for the framework. Record the software version used.",
+        "type": "software",
+        "title": "Solver Agent: Towards Emotional and Opponent-Aware Agent for Human-Robot Negotiation — maintained code companion",
+        "authors": [
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          }
+        ],
+        "version": "2.0.0",
+        "date-released": "2026-09-12",
+        "license": "GPL-3.0-only",
+        "repository-code": "https://github.com/monurkeskin/solver-agent-2021",
+        "doi": "10.5281/zenodo.22729008"
+      }
+    },
+    "jennifer-negotiation-2022": {
+      "id": "jennifer-negotiation-2022",
+      "bibtex_key": "jennifernegotiation2022",
+      "paper": {
+        "type": "article",
+        "title": "Would You Imagine Yourself Negotiating With a Robot, Jennifer? Why Not?",
+        "authors": [
+          {
+            "given-names": "Reyhan",
+            "family-names": "Aydoğan"
+          },
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          },
+          {
+            "given-names": "Umut",
+            "family-names": "Çakan"
+          }
+        ],
+        "year": 2022,
+        "url": "https://doi.org/10.1109/THMS.2021.3121664",
+        "doi": "10.1109/THMS.2021.3121664"
+      },
+      "software": {
+        "cff-version": "1.2.0",
+        "message": "Please cite the associated paper, and NEGOTIATOR for the framework. Record the software version used.",
+        "type": "software",
+        "title": "Would You Imagine Yourself Negotiating With a Robot, Jennifer? Why Not? — maintained code companion",
+        "authors": [
+          {
+            "given-names": "Mehmet Onur",
+            "family-names": "Keskin"
+          }
+        ],
+        "version": "2.0.0",
+        "date-released": "2026-09-12",
+        "license": "GPL-3.0-only",
+        "repository-code": "https://github.com/monurkeskin/jennifer-negotiation-2022",
+        "doi": "10.5281/zenodo.22729004"
+      }
+    },
+    "CBOM": {
+      "id": "CBOM",
+      "bibtex_key": "keskin2023cbom",
+      "paper": {
+        "type": "article",
+        "title": "Conflict-based negotiation strategy for human-agent negotiation",
+        "authors": [
+          {
+            "family-names": "Keskin",
+            "given-names": "Mehmet Onur"
+          },
+          {
+            "family-names": "Buzcu",
+            "given-names": "Berk"
+          },
+          {
+            "family-names": "Aydoğan",
+            "given-names": "Reyhan"
+          }
+        ],
+        "journal": "Applied Intelligence",
+        "volume": 53,
+        "start": 29741,
+        "end": 29757,
+        "year": 2023,
+        "month": 11,
+        "doi": "10.1007/s10489-023-05001-9",
+        "url": "https://doi.org/10.1007/s10489-023-05001-9"
+      },
+      "software": {
+        "cff-version": "1.2.0",
+        "message": "If you use CBOM, please cite the paper in preferred-citation and record the software version and commit used.",
+        "type": "software",
+        "title": "CBOM: Conflict-Based Opponent Modeling and Negotiation",
+        "version": "1.1.0",
+        "date-released": "2026-09-09",
+        "authors": [
+          {
+            "family-names": "Keskin",
+            "given-names": "Mehmet Onur"
+          }
+        ],
+        "repository-code": "https://github.com/monurkeskin/CBOM",
+        "url": "https://github.com/monurkeskin/CBOM",
+        "license": "GPL-3.0-only",
+        "keywords": [
+          "opponent modeling",
+          "automated negotiation",
+          "human-agent negotiation",
+          "multi-agent systems"
+        ],
+        "abstract": "Maintained implementation of conflict-based opponent modeling and the associated negotiation strategy, with aggregated evidence, bounded candidate search, runnable examples and explicit method provenance."
+      }
+    },
+    "NegoLogV2": {
+      "id": "NegoLogV2",
+      "bibtex_key": "dogru2024negolog",
+      "paper": {
+        "type": "conference-paper",
+        "title": "NegoLog: An Integrated Python-based Automated Negotiation Framework with Enhanced Assessment Components",
+        "authors": [
+          {
+            "family-names": "Doğru",
+            "given-names": "Anıl"
+          },
+          {
+            "family-names": "Keskin",
+            "given-names": "Mehmet Onur"
+          },
+          {
+            "family-names": "Jonker",
+            "given-names": "Catholijn M."
+          },
+          {
+            "family-names": "Baarslag",
+            "given-names": "Tim"
+          },
+          {
+            "family-names": "Aydoğan",
+            "given-names": "Reyhan"
+          }
+        ],
+        "collection-title": "Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence, IJCAI-24",
+        "publisher": {
+          "name": "International Joint Conferences on Artificial Intelligence Organization"
+        },
+        "editors": [
+          {
+            "family-names": "Larson",
+            "given-names": "Kate"
+          }
+        ],
+        "start": 8640,
+        "end": 8643,
+        "year": 2024,
+        "month": 8,
+        "notes": "Demo Track",
+        "doi": "10.24963/ijcai.2024/998",
+        "url": "https://doi.org/10.24963/ijcai.2024/998"
+      },
+      "software": {
+        "cff-version": "1.2.0",
+        "message": "If you use NegoLog in your research, please cite the IJCAI 2024 paper listed in preferred-citation and record the code revision used.",
+        "type": "software",
+        "title": "NegoLog V2",
+        "version": "2.1.0",
+        "date-released": "2026-09-09",
+        "authors": [
+          {
+            "family-names": "Doğru",
+            "given-names": "Anıl"
+          },
+          {
+            "family-names": "Keskin",
+            "given-names": "Mehmet Onur"
+          },
+          {
+            "family-names": "Aydoğan",
+            "given-names": "Reyhan"
+          }
+        ],
+        "repository-code": "https://github.com/aniltrue/NegoLog",
+        "url": "https://github.com/aniltrue/NegoLog",
+        "license": "GPL-3.0",
+        "abstract": "A Python framework for bilateral automated negotiation and opponent-model assessment, with configurable tournaments, negotiation agents, preference estimators, logs and a local web interface.",
+        "keywords": [
+          "automated negotiation",
+          "multi-agent systems",
+          "opponent modeling",
+          "negotiation simulation"
+        ]
+      }
+    }
+  }
+}
