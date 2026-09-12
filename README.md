@@ -7,39 +7,55 @@ Mehmet Onur Keskin · Berk Buzcu · Berkecan Koçyiğit · Umut Çakan · Anıl 
 [![Tests](https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/actions/workflows/tests.yml/badge.svg)](https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/actions/workflows/tests.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
-NEGOTIATOR helps researchers run human–agent and human–robot negotiation studies.
-Participants state their preferences and exchange offers with an agent; the
-researcher controls the conditions and follows the interaction in a separate view.
-The framework records decisions, outcomes and session events for later analysis.
+Negotiating with a person involves more than selecting a bid. A system must
+understand the proposed agreement, reason about preferences, decide how to
+respond and communicate that response. **NEGOTIATOR brings these parts into a
+shared framework for human–agent and human–robot negotiation research.**
 
-The [IJCAI 2024 paper](https://doi.org/10.24963/ijcai.2024/1012) describes how preference
-elicitation, negotiation strategies, emotion analysis and robot interaction fit
-together. This repository provides a maintained implementation with a local GUI,
-published strategy components and independent device bridges. You can try a
-complete negotiation in your browser before configuring a robot.
+## The framework in the paper
 
-![Participant view: a synthetic offer, the participant's score and negotiation history.](docs/images/participant.png)
+![Paper Figure 1: preference configuration, speech-to-text, text-to-offer and emotional modelling feed Nego Core; the agent provides offers and moods to the interaction manager and GUI.](docs/paper/architecture.svg)
 
-## From research question to interaction
+*Figure 1 from the IJCAI 2024 paper. Nego Core coordinates the interaction;
+offering strategy, acceptance strategy and opponent model sit within the agent.
+The interaction manager turns its offer and mood into a response.*
 
-Choose what people negotiate over, configure or elicit their preferences, select a
-strategy and define how offers are presented. The conductor and participant have
-separate views. Each session leaves a record you can inspect, replay and analyze.
+The central idea is to make study components replaceable. A researcher can
+change the bidding strategy while keeping the interface, or compare embodiments
+while keeping the negotiation task common. Table 1 describes the design space:
 
-```mermaid
-flowchart LR
-  A[Study question and conditions] --> B[Preferences and domain]
-  B --> C[Human offers and responses]
-  C <--> D[Agent strategy and opponent model]
-  D --> E[Text, avatar or robot presentation]
-  E --> C
-  C --> F[Session record]
-  F --> G[Analysis and figures]
-```
+| Configuration dimension | Options described in the paper |
+| --- | --- |
+| User input | Speech; text; audio and visual input |
+| Interaction | GUI only; robot only; robot with GUI |
+| Agent | Emotion-aware; combined behavior/time; behavior-based |
+| Emotion representation | Categorical; dimensional; personalized |
+| Negotiation task | Zero-sum and non-zero-sum scenarios |
 
-This structure supports questions about bargaining tactics, gestures, embodiment
-and emotional feedback. A new strategy can use the same domain and session tools;
-a presentation change can keep the underlying bargaining rule fixed.
+*Readable transcription of Table 1. This is the paper's configuration matrix.
+The [current component guide](docs/methods.md) and [device guide](docs/devices.md)
+describe the components available in this maintained release and their setup.*
+
+## One architecture, different interactions
+
+| GUI-only negotiation | Robot and GUI |
+| --- | --- |
+| ![Paper Figure 2a: holiday preferences, offers and a text negotiation interface.](docs/paper/paper-gui.svg) | ![Paper Figure 2b: NAO with a camera, microphone and negotiation display.](docs/paper/paper-robot.svg) |
+
+*Figure 2 from the paper: two interfaces built around the same negotiation
+workflow. These are the original demonstration screens and robot setup.*
+
+The paper connects the framework to studies of Jennifer's gestures, Solver's
+emotional feedback, physical versus virtual embodiment, and robot appearance.
+The [paper companions below](#a-family-of-negotiation-studies) let you follow
+each question through its own protocol, profiles and method checks.
+
+This repository continues that work with a local browser application, separate
+conductor and participant views, durable session records and device bridges.
+The original paper describes a Docker/RabbitMQ architecture; the maintained
+engine uses its documented local application and process contracts. You can
+try a complete negotiation before configuring a robot.
+[Paper figures and sources](docs/paper/README.md).
 
 ## Your first negotiation
 
@@ -61,6 +77,10 @@ in PowerShell. [Other installation options](docs/installation.md).
    in the conductor workspace.
 3. Make offers, inspect the partner's response and reach an agreement or end the session.
 4. Choose **Build report**, then **Open report** to inspect the interaction.
+
+![Current participant view: a synthetic offer, score and negotiation history.](docs/images/participant.png)
+
+*The maintained browser interface; a synthetic session.*
 
 The two views run on the same computer, including a second monitor. Start with a
 synthetic practice run; the default server is a local workspace.
@@ -85,11 +105,6 @@ synthetic practice run; the default server is a local workspace.
 
 Holiday A/B, Fruits and Desert Island are bundled. Allocation bids state what the
 human keeps. The current enumerating strategies support up to 50,000 outcomes.
-
-The maintained engine uses a modern local application and device-process contracts.
-It is not a drop-in implementation of the paper's Docker/RabbitMQ message protocol.
-The [method guide](docs/methods.md) and [device matrix](docs/devices.md) explain which
-published components are available and where historical behavior differs.
 
 ## A family of negotiation studies
 

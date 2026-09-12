@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "paper_url": "https://doi.org/10.24963/ijcai.2024/1012",
+  "pdf_sha256": "844c5a8472dcf577bfd8189a92f58f76b80856ede0ed96ad6346b32f59558b03",
+  "pdf_reference": "Publisher PDF",
+  "verification": "Compared with the cited paper PDF; page numbers count from its first page.",
+  "figures": [
+    {
+      "file": "architecture.png",
+      "figure": "Figure 1; fig:framework-chart",
+      "pdf_page": 2,
+      "source_file": "Figures/hant-framework.png",
+      "source_sha256": "33b09b5b79e957accc4df76a71a753dbe06a4af5b5be402fc1fbccfdec34741b",
+      "sha256": "33b09b5b79e957accc4df76a71a753dbe06a4af5b5be402fc1fbccfdec34741b",
+      "conversion": "Unmodified source image.",
+      "display_file": "architecture.svg",
+      "display_sha256": "54b7e14ba3a015450ac7e5551f36e8d1c1368eb2b1e38bfa70353ab3d7ebb6b9",
+      "display_note": "SVG places the unmodified image over white, matching the paper and keeping black text visible in dark themes."
+    },
+    {
+      "file": "paper-gui.png",
+      "figure": "Figure 2a; fig:gui-demo",
+      "pdf_page": 3,
+      "source_file": "Figures/gui-only-framework.png",
+      "source_sha256": "8701ce4362e96e64c569b3bc33bf0e75af0139e0d0e5975d35b785e52eac6f13",
+      "sha256": "8701ce4362e96e64c569b3bc33bf0e75af0139e0d0e5975d35b785e52eac6f13",
+      "conversion": "Unmodified source image.",
+      "display_file": "paper-gui.svg",
+      "display_sha256": "ce81ac72e47d38bab42ad6ff9a96296dc68bfeeed5b93ecb79c34d505fae0aff",
+      "display_note": "SVG places the unmodified image over white, matching the paper and keeping black text visible in dark themes."
+    },
+    {
+      "file": "paper-robot.png",
+      "figure": "Figure 2b; fig:nao-demo",
+      "pdf_page": 3,
+      "source_file": "Figures/NAO-framework.png",
+      "source_sha256": "ebdd5df2c28b3cfd553a3bcf6fd2613c9196778e065cee81c12202291fc6dfd4",
+      "sha256": "ebdd5df2c28b3cfd553a3bcf6fd2613c9196778e065cee81c12202291fc6dfd4",
+      "conversion": "Unmodified source image.",
+      "display_file": "paper-robot.svg",
+      "display_sha256": "3c803268cf2f39334fce5917137aefa38a66c96a26adbf66ab64f5bfd0e48df6",
+      "display_note": "SVG places the unmodified image over white, matching the paper and keeping black text visible in dark themes."
+    }
+  ]
+}
