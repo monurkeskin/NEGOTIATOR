@@ -41,8 +41,8 @@
     "message": "Please cite the framework paper when using this software, and the relevant method papers for their components.",
     "title": "NEGOTIATOR: maintained human-agent negotiation framework",
     "type": "software",
-    "version": "2.0.0",
-    "date-released": "2026-09-12",
+    "version": "2.1.0",
+    "date-released": "2026-09-13",
     "license": "GPL-3.0-only",
     "repository-code": "https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024",
     "authors": [
@@ -51,6 +51,6 @@
         "family-names": "Keskin"
       }
     ],
-    "doi": "10.5281/zenodo.22728983"
+    "url": "https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/releases/tag/v2.1.0"
   }
 }

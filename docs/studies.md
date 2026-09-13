@@ -52,8 +52,9 @@ as an interrupted session and cannot silently resume the original trial.
 
 ## Questionnaires and repeated sessions
 
-Configure items with an ID, wording, integer minimum/maximum, required flag,
-source and phase: `pre_study`, `pre_session`, `post_session`, `post_study`.
+Configure items with an ID, wording, integer minimum/maximum, optional
+`minimum_label`/`maximum_label`, required flag, source and phase:
+`pre_study`, `pre_session`, `post_session`, `post_study`.
 The same item set is scheduled for every matching session phase. Source wording,
 reuse rights and validity are the researcher's responsibility. Synthetic example
 items are not validated scales.
@@ -61,12 +62,16 @@ items are not validated scales.
 Pre-session answers target the upcoming session; post-session answers target the
 session just ended. The study journal is authoritative for answers and protocol
 transitions. Optional blanks and surveys never administered remain explicit in
-reports. Practice is identified, including its questionnaire targets.
+reports. Practice is identified, including its questionnaire targets when
+`include_practice` is enabled. Items that exclude practice do not create missing
+response rows for those sessions. A skipped optional item stays null, never zero.
+Labels such as “Strongly disagree” and “Strongly agree” are shown beside the
+numeric endpoints and retained in the study journal and analysis exports.
 
-At a result, continue through any scheduled questionnaire and break. The current
-break is conductor/participant controlled, with no automatic minimum duration.
-For a prescribed break such as the Jennifer study's 15 minutes, use a separate
-conductor timer, record the start/end in notes and follow the paper-specific guide.
+At a result, continue through any scheduled questionnaire and break. Set
+`break_after_seconds` on the preceding condition to enforce its minimum duration;
+the next stage stays unavailable until that duration has elapsed. Follow the
+paper-specific guide for the duration and questionnaire order.
 The next session gets a new history, clock, strategy/model and input state.
 
 ## Configuration files
@@ -90,6 +95,9 @@ from a study, run `negotiator report local-data --output NEW_REPORT_FOLDER`.
 See [analysis](analysis.md) for exclusions, paired records and cohort/domain handling.
 
 ## Published protocols and study purpose
+
+For the distinction between files needed to run a new study and historical
+analysis inputs, see [protocol requirements](protocol-requirements.md).
 
 Import a companion configuration through **New study → Import a paper or study
 configuration**. Demonstrations permit generated profiles; custom studies require

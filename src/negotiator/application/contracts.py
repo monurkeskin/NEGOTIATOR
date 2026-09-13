@@ -2,7 +2,7 @@
 
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator, model_validator
 
 from negotiator.application.session import validate_id
 from negotiator.strategies import strategy_names
@@ -58,6 +58,8 @@ class SurveyItem(StrictModel):
     prompt: str = Field(min_length=1, max_length=2000)
     minimum: int = 1
     maximum: int = 7
+    minimum_label: str | None = Field(default=None, min_length=1, max_length=200)
+    maximum_label: str | None = Field(default=None, min_length=1, max_length=200)
     phase: Literal["pre_study", "pre_session", "post_session", "post_study"] = "post_session"
     required: bool = True
     include_practice: bool = False
@@ -73,6 +75,7 @@ class SurveyItem(StrictModel):
 class ProtocolRequirement(StrictModel):
     id: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$")
     description: str = Field(min_length=1, max_length=2000)
+    required_for: Literal["execution", "historical-analysis"] = "execution"
     path: str | None = None
     sha256: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
 
@@ -182,7 +185,7 @@ class CommandRequest(Request):
 
 
 class SurveyRequest(PhaseRequest):
-    answers: dict[str, int | None]
+    answers: dict[str, StrictInt | None]
 
 
 class NoteRequest(PhaseRequest):

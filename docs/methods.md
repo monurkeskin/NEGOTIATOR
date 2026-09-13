@@ -30,10 +30,12 @@ fraction `t`, awareness `a` and categorical emotion effect `e`, the Solver behav
 target is `u + a² e − (1 − a²)(.5 + .5t) delta`. The final target mixes this behavior
 target with the time target using weights `1 − t²` and `t²`.
 
-The linked 2025 public source contains a valence/arousal change rule, whereas the
-paper describes the categorical rule. The `solver-2025` preset above implements the
-categorical rule and does not claim exact parity with that linked source. Historical
-experiment identity cannot be inferred from repository HEAD or a branch name.
+The anonymized source linked by the later paper is an IJCAI framework snapshot,
+as clarified by the maintainer. Its valence/arousal change rule is not evidence
+that the IVA experiment used that rule. The Solver papers describe categorical
+emotion, also confirmed by the maintainer and the earlier categorical source.
+Both Solver presets use that representation. Historical experiment identity
+cannot be inferred from repository HEAD or a branch name.
 
 ## Maintained corrections and explicit differences
 
@@ -68,7 +70,7 @@ experiment identity cannot be inferred from repository HEAD or a branch name.
   Negotiation Integrating Preferences, Interaction, and Emotion* (IJCAI 2024).
   [Paper](https://doi.org/10.24963/ijcai.2024/1012).
 - Framework reference code: [HumanRobotNego](https://github.com/berkbuzcu/HumanRobotNego/tree/0a2dd11ad324a057e7af9d2cd1cdccbf4c7bf499), GPL-3.0.
-- Later linked source: [human-agent-negotiation-framework](https://github.com/anonimpanda/human-agent-negotiation-framework/tree/90e4a3ab7120b781b28895b7109bcfbab663e05a), MIT; its notice is retained in `licenses/`.
+- Anonymized IJCAI framework reference: [human-agent-negotiation-framework](https://github.com/anonimpanda/human-agent-negotiation-framework/tree/90e4a3ab7120b781b28895b7109bcfbab663e05a), MIT; its notice is retained in `licenses/`.
 - CBOM: [released opponent-model code](https://github.com/monurkeskin/CBOM/tree/41345ae4fee8c95c0dd641c7b80a43eb015422da),
   [method notes](https://github.com/monurkeskin/CBOM/blob/41345ae4fee8c95c0dd641c7b80a43eb015422da/docs/method.md)
   and [paper](https://doi.org/10.1007/s10489-023-05001-9). Only the Python opponent
@@ -81,28 +83,26 @@ notes for the equivalence scope. File hashes and selected assets are listed in
 [`NOTICE`](../NOTICE) and `licenses/`.
 
 
-## Scientific changes in 2.0.0
-
-### Additional alignment notes
+## Presentation behavior in 2.1.0
 
 The generic mood schedule follows the inspected legacy implementation; it is not
-identical to every paper's presentation specification. For example, the Embodiment
-paper gives .40/.60/.80 warning times, while that code variant uses .60/.73/.86.
-Paper companions document these distinctions rather than treating the absence of
-participant records as a method incompatibility.
+identical to every paper's presentation specification. The Embodiment paper gives
+.40/.60/.80 warning times, while this code variant uses .60/.73/.86. Keep the method
+and protocol revision with a run when comparing those variants.
 
-The current text interpreter recognizes domain vocabulary and explicit quantities.
-It does not implement the full historical grammar, recipient perspective or
-negation handling for allocation sentences. Use structured bids when these forms
-are needed and verify the displayed allocation before sending a text draft.
+Terminal moods now follow the committed outcome for either accepting actor.
+The generic policy selects Happy at agreement; Jennifer's policies retain their
+own Acceptance/Satisfied names. This corrects a presentation defect without
+changing the recorded agreement or utility. Jennifer's `offended_threshold` can
+be set independently of reservation; absent settings preserve legacy behavior.
+The revised companion protocols select 0.3 explicitly.
 
-The current generic terminal presentation can retain the preceding mood when a
-human accepts an offer; it does not yet guarantee the paper's Happy terminal mood.
-The agreement and its utilities are recorded separately from that presentation.
-This is a presentation defect identified by a synthetic session, not a change to
-the definition of agreement.
+The text interpreter accepts complete English human-share requests with digits or
+number words. Negated, approximate, fractional or partner-share wording requires
+clarification. This maintained input contract does not recover the full historical
+speech grammar. Verify the displayed allocation before sending a text draft.
 
-### Version 2.0 method choices
+## Scientific changes in 2.0.0
 
 The 2025 paper's Algorithm `alg-solver` applies adaptation before generating the
 current offer. Version 2.0 follows that order, implements the Silent direction from
@@ -115,9 +115,18 @@ minimum 9 human offers, concession step .2, Silent multiplier .5, Selfish multip
 1.5. The threshold, concession step and Selfish factor inherit maintained conventions; the Silent magnitude is
 an explicit maintenance choice rather than a recovered experiment parameter.
 The class-change trigger, four-difference weights, one-move awareness lag and
-zero-denominator value 0 are also recorded/documented. Published-protocol templates
-retain an evidence gate for resolving historical constants. See the 2025 companion
+zero-denominator value 0 are also recorded/documented. Historical parameter
+provenance is separate from the inputs needed to run a new study; see
+[protocol requirements](protocol-requirements.md). See the 2025 companion
 for equation/figure/algorithm locators and independent tests.
+
+In the maintained 2025 preset, a transition to Silent sets the response multiplier
+to .5. This reduces the magnitude of the reciprocal term without reversing its
+sign. A zero utility difference still contributes zero. The paper specifies the
+direction, but the inspected categorical source leaves this branch unchanged;
+.5 is a declared maintenance choice, not a recovered experimental constant or an
+empirically optimized value. Repeated decisions in the same class do not halve it
+again. The earlier 2021 preset retains its separately documented adaptation rule.
 
 Categorical affect is averaged over observations between the previous agent offer
 presentation attempt (or offer commit if no attempt exists) and the human response.

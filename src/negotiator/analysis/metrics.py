@@ -5,10 +5,17 @@ from math import fsum, hypot, isfinite, sqrt
 from typing import Any
 
 
-def classify_move(own_delta: float, other_delta: float, threshold: float = 0.03) -> str:
-    """NegoLog move categories with an explicit report-only threshold."""
+def validate_movement_threshold(threshold: float) -> None:
+    """Validate the report setting independently of the number of recorded offers."""
     if not isfinite(threshold) or threshold <= 0:
         raise ValueError("Movement threshold must be finite and positive.")
+
+
+def classify_move(own_delta: float, other_delta: float, threshold: float = 0.03) -> str:
+    """NegoLog move categories with an explicit report-only threshold."""
+    validate_movement_threshold(threshold)
+    if not isfinite(own_delta) or not isfinite(other_delta):
+        raise ValueError("Movement utility differences must be finite.")
     if abs(own_delta) < threshold and abs(other_delta) < threshold:
         return "Silent"
     if abs(own_delta) < threshold and other_delta > 0:
@@ -20,6 +27,37 @@ def classify_move(own_delta: float, other_delta: float, threshold: float = 0.03)
     if own_delta > 0 and other_delta <= 0:
         return "Selfish"
     return "Fortunate"
+
+
+def outcome_metrics(
+    point: tuple[float, float] | None, maximum_product: float | None
+) -> dict[str, float | str | None]:
+    """Keep the agreement sum, product and domain-normalized product distinct."""
+    if point is not None and any(not isfinite(v) or not 0 <= v <= 1 for v in point):
+        raise ValueError("Outcome utilities must be finite and in [0, 1].")
+    if maximum_product is not None and (
+        not isfinite(maximum_product) or not 0 <= maximum_product <= 1
+    ):
+        raise ValueError("Maximum utility product must be finite and in [0, 1].")
+    product = None if point is None else point[0] * point[1]
+    if product is not None and maximum_product is not None and product > maximum_product + 1e-12:
+        raise ValueError("Outcome utilities exceed the supplied domain maximum product.")
+    if point is None:
+        reason = "no_agreement"
+    elif maximum_product is None:
+        reason = "unknown_maximum_product"
+    elif maximum_product == 0:
+        reason = "zero_maximum_product"
+    else:
+        reason = None
+    return {
+        "utility_sum": None if point is None else fsum(point),
+        "utility_product": product,
+        "normalized_utility_product": product / maximum_product
+        if product is not None and maximum_product is not None and maximum_product > 0
+        else None,
+        "normalized_utility_product_missing_reason": reason,
+    }
 
 
 def mean(values: Sequence[float]) -> float | None:

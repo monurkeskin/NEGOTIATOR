@@ -23,6 +23,7 @@ def planned_mood(session: Session, target: Event) -> str | None:
             int(config.mood_policy[-4:]),
             warning_fraction=config.mood_parameters["warning_fraction"],
             reservation=session.agent_profile.reservation,
+            offended_threshold=config.mood_parameters.get("offended_threshold"),
         )
         if config.mood_policy != "generic"
         else None
@@ -34,16 +35,18 @@ def planned_mood(session: Session, target: Event) -> str | None:
             break
         if event.kind == "offer.committed" and event.payload["actor"] == "human":
             pending = event
-        elif (
-            event.kind == "offer.committed" and event.payload["actor"] == "agent"
-        ) or event.kind == "session.ended":
-            if (
-                jennifer
-                and event.kind == "session.ended"
-                and event.payload["reason"] != "agreement"
-            ):
-                mood = "Times up" if event.payload["reason"] == "deadline" else None
-            elif pending is not None:
+        elif event.kind == "session.ended":
+            if event.payload["reason"] == "agreement":
+                mood = {
+                    "generic": "Happy",
+                    "jennifer-2021": "Acceptance",
+                    "jennifer-2022": "Satisfied",
+                }[config.mood_policy]
+            else:
+                mood = "Times up" if jennifer and event.payload["reason"] == "deadline" else None
+            pending = None
+        elif event.kind == "offer.committed" and event.payload["actor"] == "agent":
+            if pending is not None:
                 bid = Bid(pending.payload["bid"])
                 t = min(
                     1.0,
@@ -51,11 +54,7 @@ def planned_mood(session: Session, target: Event) -> str | None:
                 )
                 if jennifer:
                     incoming = session.agent_profile.utility(bid, "agent")
-                    proposed = (
-                        session.agent_profile.utility(Bid(event.payload["bid"]), "agent")
-                        if event.kind == "offer.committed"
-                        else incoming
-                    )
+                    proposed = session.agent_profile.utility(Bid(event.payload["bid"]), "agent")
                     mild = (
                         time_target(t, 0.94, 0.5, 0.4)
                         if config.strategy == "tsbt"

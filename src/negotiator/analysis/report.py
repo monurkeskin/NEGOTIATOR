@@ -20,13 +20,24 @@ from negotiator.events.projection import replay
 from negotiator.examples import builtin_domain
 from negotiator.models.cbom import CBOMModel
 
-from .metrics import classify_move, distance, mean, model_errors, reference_points
+from .metrics import (
+    classify_move,
+    distance,
+    mean,
+    model_errors,
+    outcome_metrics,
+    reference_points,
+    validate_movement_threshold,
+)
 from .plots import session_figures
+
+MOVEMENT_DEFINITION = "negolog-f7a4f88-with-explicit-missingness"
 
 
 def read_session(
     path: Path, *, include_practice: bool = False, threshold: float = 0.03
 ) -> dict[str, Any]:
+    validate_movement_threshold(threshold)
     events = Journal(path).read()
     if not events or events[0].kind != "session.started":
         raise ValueError("Expected a canonical session journal.")
@@ -68,6 +79,8 @@ def read_session(
             "human_utility": utilities["human"],
             "agent_utility": utilities["agent"],
             "move": None,
+            "move_definition": MOVEMENT_DEFINITION,
+            "move_threshold": threshold,
         }
         actor = offer["actor"]
         other = "agent" if actor == "human" else "human"
@@ -159,6 +172,11 @@ def read_session(
     ]
     key = f"{config['study_id']}-{config['participant_id']}-{config['session_id']}"
     snapshot_bytes = ("\n".join(e.record_json for e in events) + "\n").encode()
+    agreement = (
+        (state.outcome["utilities"]["human"], state.outcome["utilities"]["agent"])
+        if state.outcome and state.outcome["reason"] == "agreement"
+        else None
+    )
     return {
         "key": key,
         "config": config,
@@ -170,6 +188,17 @@ def read_session(
         "human_provenance": human.provenance,
         "status": state.status,
         "outcome": state.outcome,
+        "outcome_metrics": outcome_metrics(
+            agreement, reference["raw_nash_product"] if reference else None
+        ),
+        "movement_contract": {
+            "id": MOVEMENT_DEFINITION,
+            "threshold": threshold,
+            "near_zero_comparison": "absolute_delta_strictly_less_than_threshold",
+            "utility_source": "recorded_profiles",
+            "comparison": "successive_offers_by_the_same_actor",
+            "role": "post_session_report_not_solver_decision_features",
+        },
         "elapsed_seconds": state.elapsed_seconds,
         "offers": offers,
         "observations": observations,
@@ -242,6 +271,8 @@ def study_records(
                         "prompt": item["prompt"],
                         "minimum": item["minimum"],
                         "maximum": item["maximum"],
+                        "minimum_label": item.get("minimum_label"),
+                        "maximum_label": item.get("maximum_label"),
                         "source": item["source"],
                         "value": value,
                         "missing_reason": "not_answered" if value is None else None,
@@ -253,7 +284,9 @@ def study_records(
                 [(None, None)]
                 if phase in ("pre_study", "post_study")
                 else [
-                    (f"{state['plan_id']}-{i}", i) for i in range(1, len(state["conditions"]) + 1)
+                    (f"{state['plan_id']}-{i}", i)
+                    for i, condition in enumerate(state["conditions"], 1)
+                    if not condition.get("practice", False) or item.get("include_practice", False)
                 ]
             )
             for target_sid, target_index in targets:
@@ -285,6 +318,8 @@ def study_records(
                         "prompt": item["prompt"],
                         "minimum": item["minimum"],
                         "maximum": item["maximum"],
+                        "minimum_label": item.get("minimum_label"),
+                        "maximum_label": item.get("maximum_label"),
                         "source": item["source"],
                         "value": None,
                         "missing_reason": "not_answered" if shown else "not_administered",
@@ -468,6 +503,7 @@ def build_report(
     threshold: float = 0.03,
     plan_id: str | None = None,
 ) -> Path:
+    validate_movement_threshold(threshold)
     source, output = Path(source).resolve(), Path(output).resolve()
     if output.exists():
         raise ValueError("Report output already exists; choose a new directory to preserve it.")
@@ -498,7 +534,17 @@ def build_report(
         "independent_unit": "participant",
         "include_practice": include_practice,
         "movement_threshold": threshold,
-        "movement_definition": "negolog-f7a4f88-with-explicit-missingness",
+        "movement_definition": MOVEMENT_DEFINITION,
+        "metric_definitions": {
+            "utility_sum": {"id": "utility-sum-v1", "formula": "U_h + U_a"},
+            "utility_product": {"id": "utility-product-v1", "formula": "U_h * U_a"},
+            "normalized_utility_product": {
+                "id": "normalized-utility-product-v1",
+                "formula": "(U_h * U_a) / max_b(U_h(b) * U_a(b))",
+                "reference": "all_outcomes_under_recorded_reference_profiles",
+                "undefined": "null_with_reason_when_no_agreement_or_denominator_unavailable",
+            },
+        },
         "sessions": sessions,
         "planned_sessions": planned,
         "study_sources": [
@@ -539,6 +585,7 @@ def build_report(
                 "included": s["included"],
                 "exclusions": s["exclusions"],
                 "offers": len(s["offers"]),
+                **s["outcome_metrics"],
                 "source_sha256": s["source_sha256"],
             }
             for s in sessions
@@ -581,7 +628,12 @@ def build_report(
                 + " · Exclusions: "
                 + (", ".join(record["exclusions"]) or "none")
             )
-            + '</p><img alt="Committed offers by actor against elapsed seconds. Full numeric data is in offers.csv." src="'
+            + "</p>"
+            + html_table(
+                [record["outcome_metrics"]],
+                ["utility_sum", "utility_product", "normalized_utility_product"],
+            )
+            + '<p>Agreement measures; the normalized product uses the maximum product in this session’s domain.</p><img alt="Committed offers by actor against elapsed seconds. Full numeric data is in offers.csv." src="'
             + base
             + 'trajectory.svg"><p><a href="'
             + base

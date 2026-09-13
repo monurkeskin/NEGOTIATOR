@@ -8,9 +8,9 @@ from negotiator.application.contracts import CommandRequest, StudySpec
 from negotiator.application.session import Session, SessionConfig
 from negotiator.application.studies import PhaseError, StudyStore
 from negotiator.application.synthetic import run_study
-from negotiator.domain.actions import Offer
+from negotiator.domain.actions import Accept, End, Offer
 from negotiator.examples import builtin_domain, example_profiles
-from negotiator.interaction.presentation import Presenter
+from negotiator.interaction.presentation import Presenter, planned_mood
 
 
 def test_synthetic_example_obeys_notification_protocol(tmp_path):
@@ -152,3 +152,106 @@ def test_jennifer_presentation_replays_mood_after_failed_attempt_write(tmp_path,
     assert commands[-1]["mood"] == "Stressed"
     assert commands[-1]["gesture"] == "stress"
     assert len(commands) == 2
+
+
+@pytest.mark.parametrize(
+    "policy,expected",
+    [
+        ("generic", "Happy"),
+        ("jennifer-2021", "Acceptance"),
+        ("jennifer-2022", "Satisfied"),
+    ],
+)
+@pytest.mark.parametrize("acceptor", ["human", "agent"])
+def test_agreement_mood_is_terminal_for_either_accepting_actor(
+    tmp_path, policy, expected, acceptor
+):
+    domain = builtin_domain("fruits")
+    human, own = example_profiles(domain)
+    parameters = {} if policy == "generic" else {"warning_fraction": 0.8, "mild_multiplier": 0.95}
+    session = Session.create(
+        tmp_path,
+        SessionConfig(
+            "study",
+            "P1",
+            "S1",
+            mood_policy=policy,
+            mood_parameters=parameters,
+        ),
+        human,
+        own,
+    )
+    low = min(domain.bids(), key=lambda b: own.utility(b, "agent"))
+    high = max(domain.bids(), key=lambda b: own.utility(b, "agent"))
+    session.submit(Offer("h1", "human", low), "h1")
+    session.submit(Offer("a1", "agent", high), "a1")
+    pending = "a1"
+    if acceptor == "agent":
+        session.submit(Offer("h2", "human", high), "h2")
+        pending = "h2"
+    event = session.submit(Accept(acceptor, pending), "accept")
+    commands = []
+
+    class Bridge:
+        config = SimpleNamespace(gestures={expected: "terminal-gesture"}, faces={expected: "face"})
+
+        def request(self, session_id, event_id, operation, payload):
+            commands.append(payload)
+            return {"delivered": True}
+
+    presenter = Presenter(session, Bridge())
+    presenter.deliver(event)
+    presenter.deliver(event)
+    assert len(commands) == 1
+    assert commands[0]["mood"] == expected
+    assert commands[0]["gesture"] == "terminal-gesture"
+    assert commands[0]["text"] == "We have an agreement."
+    restored = Session(session.journal)
+    assert planned_mood(restored, event) == expected
+    assert restored.state.outcome["reason"] == "agreement"
+
+
+@pytest.mark.parametrize("reason", ["withdrawal", "deadline", "operator"])
+def test_generic_non_agreement_does_not_reuse_an_offer_mood(tmp_path, reason):
+    domain = builtin_domain("fruits")
+    human, own = example_profiles(domain)
+    session = Session.create(tmp_path, SessionConfig("study", "P1", "S1"), human, own)
+    low = min(domain.bids(), key=lambda b: own.utility(b, "agent"))
+    session.submit(Offer("h1", "human", low), "h1")
+    offered = session.submit(Offer("a1", "agent", low), "a1")
+    assert planned_mood(session, offered) == "Frustrated"
+    ended = session.submit(End("human", reason), "end")
+    assert planned_mood(session, ended) is None
+
+
+@pytest.mark.parametrize("threshold,expected", [(None, "Unpleasant"), (0.3, "Offended")])
+def test_recorded_social_threshold_survives_replay_without_changing_reservation(
+    tmp_path, threshold, expected
+):
+    from negotiator.domain import Domain, Issue, Preference
+
+    domain = Domain("mood-fixture", (Issue("choice", ("first", "low", "high")),))
+    profile = Preference(
+        domain, {"choice": 1.0}, {"choice": {"first": 0.4, "low": 0.2, "high": 0.9}}
+    )
+    parameters = {"warning_fraction": 0.8, "mild_multiplier": 0.95}
+    if threshold is not None:
+        parameters["offended_threshold"] = threshold
+    session = Session.create(
+        tmp_path,
+        SessionConfig("study", "P1", "S1", mood_policy="jennifer-2022", mood_parameters=parameters),
+        profile,
+        profile,
+        now=lambda: 0.0,
+    )
+    for number, value in enumerate(("first", "low"), 1):
+        session.submit(Offer(f"h{number}", "human", domain.bid({"choice": value})), f"h{number}")
+        event = session.submit(
+            Offer(f"a{number}", "agent", domain.bid({"choice": "high"})), f"a{number}"
+        )
+    assert planned_mood(session, event) == expected
+    restored = Session(session.journal)
+    assert restored.config.mood_parameters == parameters
+    assert restored.agent_profile.reservation == 0.0
+    assert planned_mood(restored, event) == expected
+    assert len(restored.state.offers) == 4

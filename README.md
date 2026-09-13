@@ -65,7 +65,7 @@ or robot. The browser application is included in the wheel.
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/releases/download/v2.0.0/negotiator_human-2.0.0-py3-none-any.whl
+python -m pip install https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/releases/download/v2.1.0/negotiator_human-2.1.0-py3-none-any.whl
 negotiator gui
 ```
 
@@ -168,6 +168,6 @@ If NEGOTIATOR supports your research, please cite the framework paper:
 
 Also cite the specific strategy or opponent-model paper when studying that method.
 [CITATION.cff](CITATION.cff) supports citation managers;
-the [software artifact](https://doi.org/10.5281/zenodo.22728983) identifies release 2.0.0.
+the [2.1.0 release](https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/releases/tag/v2.1.0) identifies the current software. The [archived 2.0.0 artifact](https://doi.org/10.5281/zenodo.22728983) remains available for earlier runs.
 GPL-3.0-only. [NOTICE](NOTICE), [licenses](licenses/) and
 [provenance](provenance.json) preserve the original contributors and sources.

@@ -45,7 +45,14 @@ class MoodPolicy:
 class JenniferMoodPolicy:
     """Published priority; warning time and BABT mild threshold remain explicit inputs."""
 
-    def __init__(self, year: int, *, warning_fraction: float, reservation: float):
+    def __init__(
+        self,
+        year: int,
+        *,
+        warning_fraction: float,
+        reservation: float,
+        offended_threshold: float | None = None,
+    ):
         from negotiator.domain.preferences import finite_number
 
         if year not in (2021, 2022):
@@ -54,7 +61,15 @@ class JenniferMoodPolicy:
             raise ValueError("Warning time must lie strictly between zero and one.")
         if not 0 <= finite_number(reservation, "Reservation") <= 1:
             raise ValueError("Reservation must lie in [0, 1].")
+        if (
+            offended_threshold is not None
+            and not 0 <= finite_number(offended_threshold, "Offended threshold") <= 1
+        ):
+            raise ValueError("Offended threshold must lie in [0, 1].")
         self.year, self.warning_fraction, self.reservation = year, warning_fraction, reservation
+        # Older journals did not record a separate social threshold. Preserve
+        # their replay behavior; new study configurations can specify it.
+        self.offended_threshold = reservation if offended_threshold is None else offended_threshold
         self.previous: float | None = None
         self.warned = False
 
@@ -78,7 +93,7 @@ class JenniferMoodPolicy:
         if elapsed_fraction >= self.warning_fraction and not self.warned:
             self.warned = True
             return "Hurry up" if self.year == 2021 else "Stressed"
-        if utility < self.reservation:
+        if utility < self.offended_threshold:
             return "Offended"
         if utility >= mild_threshold:
             return "Mild"
@@ -96,10 +111,14 @@ def validate_mood_parameters(policy: str, parameters: dict[str, float]) -> None:
         return
     if policy not in ("jennifer-2021", "jennifer-2022"):
         raise ValueError("Unknown presentation policy.")
-    if set(parameters) != {"warning_fraction", "mild_multiplier"}:
+    required = {"warning_fraction", "mild_multiplier"}
+    if not required <= set(parameters) or set(parameters) - required - {"offended_threshold"}:
         raise ValueError("Jennifer requires explicit warning_fraction and mild_multiplier.")
     JenniferMoodPolicy(
-        int(policy[-4:]), warning_fraction=parameters["warning_fraction"], reservation=0
+        int(policy[-4:]),
+        warning_fraction=parameters["warning_fraction"],
+        reservation=0,
+        offended_threshold=parameters.get("offended_threshold"),
     )
     from negotiator.domain.preferences import finite_number
 

@@ -6,8 +6,8 @@ an existing robot's Python environment to install the modern framework.
 
 ## Published wheel
 
-Download the wheel from [v2.0.0](https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/releases/tag/v2.0.0),
-activate a new virtual environment and run `python -m pip install PATH/TO/negotiator_human-2.0.0-py3-none-any.whl`.
+Download the wheel from [v2.1.0](https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/releases/tag/v2.1.0),
+activate a new virtual environment and run `python -m pip install PATH/TO/negotiator_human-2.1.0-py3-none-any.whl`.
 Then run `negotiator doctor` and `negotiator gui`. Dependencies install from the
 Python package index. There is no claim that this project itself is on PyPI.
 
@@ -18,7 +18,7 @@ With Git and [uv](https://docs.astral.sh/uv/) installed:
 ```bash
 git clone https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024.git
 cd NEGOTIATOR
-git checkout v2.0.0
+git checkout v2.1.0
 uv sync --locked --no-dev
 uv run --no-sync negotiator doctor
 uv run --no-sync negotiator gui

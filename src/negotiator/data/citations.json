@@ -44,17 +44,17 @@
         "message": "Please cite the framework paper when using this software, and the relevant method papers for their components.",
         "title": "NEGOTIATOR: maintained human-agent negotiation framework",
         "type": "software",
-        "version": "2.0.0",
-        "date-released": "2026-09-12",
+        "version": "2.1.0",
+        "date-released": "2026-09-13",
         "license": "GPL-3.0-only",
-        "repository-code": "https://github.com/monurkeskin/NEGOTIATOR",
+        "repository-code": "https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024",
         "authors": [
           {
             "given-names": "Mehmet Onur",
             "family-names": "Keskin"
           }
         ],
-        "doi": "10.5281/zenodo.22728983"
+        "url": "https://github.com/monurkeskin/NEGOTIATOR-IJCAI-2024/releases/tag/v2.1.0"
       }
     },
     "jennifer-negotiation-2021": {
@@ -92,11 +92,11 @@
             "family-names": "Keskin"
           }
         ],
-        "version": "2.0.0",
-        "date-released": "2026-09-12",
+        "version": "2.1.0",
+        "date-released": "2026-09-13",
         "license": "GPL-3.0-only",
-        "repository-code": "https://github.com/monurkeskin/jennifer-negotiation-2021",
-        "doi": "10.5281/zenodo.22729002"
+        "repository-code": "https://github.com/monurkeskin/Lets-Negotiate-with-Jennifer-ACAN-2018",
+        "url": "https://github.com/monurkeskin/Lets-Negotiate-with-Jennifer-ACAN-2018/releases/tag/v2.1.0"
       }
     },
     "emotion-aware-negotiation-2025": {
@@ -134,11 +134,11 @@
             "family-names": "Keskin"
           }
         ],
-        "version": "2.0.0",
-        "date-released": "2026-09-12",
+        "version": "2.1.0",
+        "date-released": "2026-09-13",
         "license": "GPL-3.0-only",
-        "repository-code": "https://github.com/monurkeskin/emotion-aware-negotiation-2025",
-        "doi": "10.5281/zenodo.22729000"
+        "repository-code": "https://github.com/monurkeskin/An-Adaptive-Emotion-Aware-Strategy-IVA-2025",
+        "url": "https://github.com/monurkeskin/An-Adaptive-Emotion-Aware-Strategy-IVA-2025/releases/tag/v2.1.0"
       }
     },
     "robot-appearance-2024": {
@@ -188,11 +188,11 @@
             "family-names": "Keskin"
           }
         ],
-        "version": "2.0.0",
-        "date-released": "2026-09-12",
+        "version": "2.1.0",
+        "date-released": "2026-09-13",
         "license": "GPL-3.0-only",
-        "repository-code": "https://github.com/monurkeskin/robot-appearance-2024",
-        "doi": "10.5281/zenodo.22729006"
+        "repository-code": "https://github.com/monurkeskin/You-Look-Nice-but-I-Am-Here-to-Negotiate-HRI-2024",
+        "url": "https://github.com/monurkeskin/You-Look-Nice-but-I-Am-Here-to-Negotiate-HRI-2024/releases/tag/v2.1.0"
       }
     },
     "agent-embodiment-2023": {
@@ -230,11 +230,11 @@
             "family-names": "Keskin"
           }
         ],
-        "version": "2.0.0",
-        "date-released": "2026-09-12",
+        "version": "2.1.0",
+        "date-released": "2026-09-13",
         "license": "GPL-3.0-only",
-        "repository-code": "https://github.com/monurkeskin/agent-embodiment-2023",
-        "doi": "10.5281/zenodo.22728998"
+        "repository-code": "https://github.com/monurkeskin/Effects-of-Agents-Embodiment-IVA-2023",
+        "url": "https://github.com/monurkeskin/Effects-of-Agents-Embodiment-IVA-2023/releases/tag/v2.1.0"
       }
     },
     "solver-agent-2021": {
@@ -271,11 +271,11 @@
             "family-names": "Keskin"
           }
         ],
-        "version": "2.0.0",
-        "date-released": "2026-09-12",
+        "version": "2.1.0",
+        "date-released": "2026-09-13",
         "license": "GPL-3.0-only",
-        "repository-code": "https://github.com/monurkeskin/solver-agent-2021",
-        "doi": "10.5281/zenodo.22729008"
+        "repository-code": "https://github.com/monurkeskin/Solver-Agent-AAMAS-2021",
+        "url": "https://github.com/monurkeskin/Solver-Agent-AAMAS-2021/releases/tag/v2.1.0"
       }
     },
     "jennifer-negotiation-2022": {
@@ -313,11 +313,11 @@
             "family-names": "Keskin"
           }
         ],
-        "version": "2.0.0",
-        "date-released": "2026-09-12",
+        "version": "2.1.0",
+        "date-released": "2026-09-13",
         "license": "GPL-3.0-only",
-        "repository-code": "https://github.com/monurkeskin/jennifer-negotiation-2022",
-        "doi": "10.5281/zenodo.22729004"
+        "repository-code": "https://github.com/monurkeskin/Jennifer-Why-Not-THMS-2022",
+        "url": "https://github.com/monurkeskin/Jennifer-Why-Not-THMS-2022/releases/tag/v2.1.0"
       }
     },
     "CBOM": {
@@ -362,8 +362,8 @@
             "given-names": "Mehmet Onur"
           }
         ],
-        "repository-code": "https://github.com/monurkeskin/CBOM",
-        "url": "https://github.com/monurkeskin/CBOM",
+        "repository-code": "https://github.com/monurkeskin/Conflict-Based-Negotiation-Strategy-Appl-Intell-2023",
+        "url": "https://github.com/monurkeskin/Conflict-Based-Negotiation-Strategy-Appl-Intell-2023",
         "license": "GPL-3.0-only",
         "keywords": [
           "opponent modeling",

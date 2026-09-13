@@ -1,5 +1,47 @@
 # Changelog
 
+## 2.1.0 — 13 September 2026
+
+Questionnaires preserve optional labels for the two scale endpoints in the GUI,
+journal and analysis exports. API ratings must be integers or null; booleans and
+coerced text/float values are rejected. Practice-only omissions no longer appear
+as missing responses for instruments that exclude practice. Legacy configurations
+without endpoint labels keep their protocol fingerprint. This fixes exported
+missingness counts without changing existing recorded responses.
+
+Session reports export the agreement utility sum, product and normalized product
+as separate, versioned measures in JSON, CSV and Excel. The domain maximum is
+computed from the recorded reference profiles; absent agreements or undefined
+normalization remain null with a reason. Reports preserve the original journal.
+
+Movement settings are validated before report generation, including sessions with
+no offers. Non-finite utility differences are rejected. Offer exports record the
+report definition and threshold separately from Solver's online move features.
+
+Jennifer studies can record a social `offended_threshold` independently of the
+preference reservation. Low offers can elicit Offended without making a subsequent
+agreement invalid. Journals without the new parameter replay their original
+reservation-based mood behavior. The companion protocols select 0.3 explicitly;
+warning times and mild multipliers are unchanged.
+Direct Python session construction now validates presentation settings before
+creating a journal, using the same rules as the GUI study configuration.
+
+Protocol requirements distinguish inputs needed to execute a new session from
+records needed for historical analysis. Unclassified requirements still default
+to execution; required session/calibration assets remain blocking. The six companion
+packages now classify runtime materials and historical evidence separately.
+
+Terminal presentation now follows the committed outcome for either accepting
+actor: agreement uses Happy (generic) or Acceptance/Satisfied (Jennifer), including
+after replay. Non-agreement endings no longer reuse a mood from a previous offer.
+The journal's agreement, bid and utility calculations are unchanged.
+
+English resource requests accept number words from zero to twenty and require a
+complete human-share allocation. Unsupported recipient, negation and quantity
+wording remains a draft instead of producing a guessed bid. `Agree` and `I agree`
+use the existing current-offer acceptance checks. These changes extend and harden
+the maintained input contract; they do not establish errors in historical studies.
+
 ## 2.0.0 — 12 September 2026
 
 Adds independent paper contracts, exact published point profiles, purpose-aware

@@ -2,7 +2,7 @@
 
 import hashlib
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from negotiator.domain import Preference
 from negotiator.domain.importers import from_dict as domain_from_dict
@@ -57,6 +57,11 @@ def protocol_digest(spec: StudySpec) -> str:
     data = spec.model_dump(exclude=excluded)
     for condition in data["conditions"]:
         condition.pop("output_device", None)
+    # Absent scale descriptions retain the fingerprint of older configurations.
+    for item in data["surveys"]:
+        for key in ("minimum_label", "maximum_label"):
+            if item.get(key) is None:
+                item.pop(key, None)
     return digest(data)
 
 
@@ -74,8 +79,15 @@ def validate_profiles(spec: StudySpec, conditions: list[dict[str, Any]]) -> None
                 Preference.from_dict(domain, profile)
 
 
-def protocol_readiness(spec: StudySpec, *, verify_hashes: bool = True) -> list[dict[str, str]]:
+def protocol_readiness(
+    spec: StudySpec,
+    *,
+    verify_hashes: bool = True,
+    operation: Literal["execution", "historical-analysis"] = "execution",
+) -> list[dict[str, str]]:
     """Missing evidence is visible; possession of a file is not empirical validation."""
+    if operation not in ("execution", "historical-analysis"):
+        raise ValueError("Choose execution or historical-analysis readiness.")
     if spec.purpose != "published-protocol":
         return []
     assert spec.protocol is not None
@@ -92,6 +104,8 @@ def protocol_readiness(spec: StudySpec, *, verify_hashes: bool = True) -> list[d
             }
         )
     for requirement in spec.protocol.requirements:
+        if requirement.required_for != operation:
+            continue
         if not requirement.path or not requirement.sha256:
             reason = "Required evidence is not supplied: " + requirement.description
         else:

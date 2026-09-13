@@ -101,6 +101,64 @@ def test_published_protocol_must_be_frozen_and_edits_are_detected(tmp_path):
     store.shutdown()
 
 
+def test_historical_records_do_not_block_a_new_protocol_session(tmp_path):
+    from negotiator.application.protocol import protocol_digest, protocol_readiness
+
+    configured = spec(
+        purpose="published-protocol",
+        protocol={
+            "id": "fixture",
+            "revision": "1",
+            "paper": "https://example.org/paper",
+            "requirements": [
+                {
+                    "id": "old-records",
+                    "description": "Historical participant records",
+                    "required_for": "historical-analysis",
+                }
+            ],
+        },
+    )
+    configured.protocol.configuration_sha256 = protocol_digest(configured)
+    assert protocol_readiness(configured) == []
+    historical = protocol_readiness(configured, operation="historical-analysis")
+    assert [item["id"] for item in historical] == ["old-records"]
+    store = StudyStore(tmp_path)
+    pid = store.create(configured)["plan_id"]
+    store.start(pid)
+    assert store.snapshot(pid)["current"]["config"]["purpose"] == "published-protocol"
+    store.shutdown()
+
+
+def test_runtime_training_input_is_still_required_even_with_historical_records_separated(tmp_path):
+    from negotiator.application.protocol import protocol_digest, protocol_readiness
+
+    configured = spec(
+        purpose="published-protocol",
+        protocol={
+            "id": "fixture",
+            "revision": "1",
+            "paper": "https://example.org/paper",
+            "requirements": [
+                {
+                    "id": "old-records",
+                    "description": "Historical records",
+                    "required_for": "historical-analysis",
+                },
+                {"id": "calibration", "description": "Input required by this session"},
+            ],
+        },
+    )
+    configured.protocol.configuration_sha256 = protocol_digest(configured)
+    assert [item["id"] for item in protocol_readiness(configured)] == ["calibration"]
+    store = StudyStore(tmp_path)
+    pid = store.create(configured)["plan_id"]
+    with pytest.raises(ValueError, match="calibration"):
+        store.start(pid)
+    assert store.snapshot(pid)["current"] is None
+    store.shutdown()
+
+
 def test_invalid_later_profile_is_detected_before_any_session_is_created(tmp_path):
     bad = profiles()["human_profile"]
     bad["weights"] = {"missing_issue": 1.0}

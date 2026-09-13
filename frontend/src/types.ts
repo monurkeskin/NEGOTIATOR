@@ -8,6 +8,7 @@ export interface Profile {
 }
 export interface Condition { score_targets?: Record<string, number>; reward_minimums?: Record<string, number>; gestures?: boolean; block?: string | null; break_after_seconds?: number; output_device?: string | null; output?: string | null; domain?: string | Domain | null; label: string; strategy: string; duration_seconds: number; practice: boolean }
 export interface SurveyItem { id: string; prompt: string; minimum: number; maximum: number;
+  minimum_label?: string | null; maximum_label?: string | null;
   phase: string; required?: boolean; source?: string; include_practice?: boolean }
 export interface StudySpec {
   interaction_protocol?: 'direct-offer' | 'ready-offer-response';

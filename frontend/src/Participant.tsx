@@ -113,7 +113,15 @@ function Survey({ study, refresh, fail }: { study: Study; refresh: () => Promise
   const [busy, setBusy] = useState(false);
   return <section className="panel survey-panel"><p className="eyebrow">{study.survey_phase?.replaceAll('_', ' ')}</p><h1>A few questions</h1><p>Answer for the session or phase indicated above.</p><form onSubmit={async e => {
     e.preventDefault(); setBusy(true); try { await api(`/studies/${study.plan_id}/survey`, 'POST', { request_id: newRequest(), phase_id: study.phase_id, answers }); await refresh(); } catch (error) { fail((error as Error).message); } finally { setBusy(false); }
-  }}>{study.survey_items.map(item => <fieldset className="survey-item" key={item.id}><legend>{item.prompt}</legend><div className="rating-options">{Array.from({ length: item.maximum - item.minimum + 1 }, (_, i) => i + item.minimum).map(value => <label key={value}><input type="radio" required={item.required !== false} name={item.id} value={value} checked={answers[item.id] === value} onChange={() => setAnswers({ ...answers, [item.id]: value })} /><span>{value}</span></label>)}</div>{item.required === false && <button type="button" className="quiet" onClick={() => setAnswers({ ...answers, [item.id]: null })}>Skip this question</button>}</fieldset>)}<div className="right"><button className="primary" disabled={busy}>Save answers</button></div></form></section>;
+  }}>{study.survey_items.map(item => <fieldset className="survey-item" key={item.id}>
+    <legend>{item.prompt}</legend>
+    {(item.minimum_label || item.maximum_label) && <div className="between hint" aria-label="Rating scale">
+      <span>{item.minimum}{item.minimum_label && ` — ${item.minimum_label}`}</span>
+      <span>{item.maximum}{item.maximum_label && ` — ${item.maximum_label}`}</span>
+    </div>}
+    <div className="rating-options">{Array.from({ length: item.maximum - item.minimum + 1 }, (_, i) => i + item.minimum).map(value => <label key={value}><input type="radio" required={item.required !== false} name={item.id} value={value} checked={answers[item.id] === value} onChange={() => setAnswers({ ...answers, [item.id]: value })} /><span>{value}</span></label>)}</div>
+    {item.required === false && <button type="button" className="quiet" onClick={() => setAnswers({ ...answers, [item.id]: null })}>Skip this question</button>}
+  </fieldset>)}<div className="right"><button className="primary" disabled={busy}>Save answers</button></div></form></section>;
 }
 
 export function Participant({ study, refresh, fail }: { study: Study; refresh: () => Promise<void>; fail: (s: string) => void }) {

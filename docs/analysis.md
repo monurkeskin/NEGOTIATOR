@@ -63,9 +63,22 @@ instrument wording is not inferred from item counts.
 
 ## Metrics
 
+- Agreement measures have separate names in JSON, the session CSV and the workbook:
+  `utility_sum` is U_h + U_a; `utility_product` is U_h × U_a;
+  `normalized_utility_product` divides that product by the maximum product across
+  the session's complete outcome space. This last measure matches the definition
+  used in the Embodiment 2023 paper. It is not the utility sum. Metric identifiers
+  and formulas accompany every report. No agreement, an unavailable reference
+  profile or a zero maximum product produce a null normalized score with a reason.
 - Utilities, elapsed seconds, actor-grouped move categories and outcomes derive from
   canonical actions. Move threshold is explicitly .03, adapted from public NegoLog
   V2 at `f7a4f88`; it does not change strategy decisions or legacy exact move features.
+  Every offer row records its report threshold and definition; each session also
+  records that these deltas use its stored profiles. Solver's online categories use
+  its then-current estimated opponent preferences and a zero threshold, with
+  different tie rules. Report categories must not be substituted for those inputs.
+  Invalid thresholds are rejected even in sessions with no comparable offers;
+  non-finite deltas cannot be classified as observed moves.
 - Pareto geometry uses known assigned/elicited reference preferences. Maximum sum
   is **social welfare**, not Kalai–Smorodinsky. Raw-product Nash and reservation-
   adjusted surplus Nash are separate. No feasible surplus outcome is null with a reason.

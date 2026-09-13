@@ -59,9 +59,11 @@ class SessionConfig:
 
     def __post_init__(self) -> None:
         from negotiator.domain.scoring import validate_thresholds
+        from negotiator.interaction.mood import validate_mood_parameters
 
         validate_thresholds(self.score_targets)
         validate_thresholds(self.reward_minimums)
+        validate_mood_parameters(self.mood_policy, self.mood_parameters)
         for value in (self.study_id, self.participant_id, self.session_id):
             validate_id(value)
         if finite_number(self.duration_seconds, "Duration") <= 0:

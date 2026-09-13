@@ -48,6 +48,58 @@ def test_counts_are_domain_driven_and_can_be_corrected():
     assert parser.finalize("water=3; map=0").complete
 
 
+def test_english_request_uses_complete_human_share_and_preserves_transcript():
+    domain = builtin_domain("fruits")
+    parser = Interpreter(domain)
+    partial = "I want to take three apples, two bananas and zero oranges"
+    draft = parser.interpret(partial)
+    assert not draft.complete
+    assert draft.missing == ("watermelon",)
+    with pytest.raises(ValueError):
+        parser.finalize(partial)
+    text = partial + " and four watermelons."
+    result = parser.finalize(text)
+    assert result.transcript == text
+    assert result.bid == domain.bid({"apple": 3, "banana": 2, "orange": 0, "watermelon": 4})
+    assert parser.current_text == ""
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "I give you 1 apple, 2 bananas, 3 oranges, 4 watermelons",
+        "You keep 1 apple, 2 bananas, 3 oranges, 4 watermelons",
+        "I do not want 1 apple, 2 bananas, 3 oranges, 4 watermelons",
+        "I don't want 1 apple, 2 bananas, 3 oranges, 4 watermelons",
+        "I want at least 1 apple, 2 bananas, 3 oranges, 4 watermelons",
+        "I want -1 apple, 2 bananas, 3 oranges, 4 watermelons",
+        "I want 1.5 apples, 2 bananas, 3 oranges, 4 watermelons",
+        "I want twenty one apples, 2 bananas, 3 oranges, 4 watermelons",
+    ],
+)
+def test_unsupported_allocation_language_never_commits_a_guessed_share(text):
+    parser = Interpreter(builtin_domain("fruits"))
+    assert not parser.interpret(text).complete
+    with pytest.raises(ValueError):
+        parser.finalize(text)
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "I do not want Hotel, Rome, Museum and Summer",
+        "I don't want to go to Rome with Hotel, Museum and Summer",
+    ],
+)
+def test_negated_categorical_request_does_not_become_positive_offer(text):
+    assert not Interpreter(builtin_domain("holiday")).interpret(text).complete
+
+
+@pytest.mark.parametrize("text", ["agree", "I agree.", "DEAL!"])
+def test_published_english_agreement_vocabulary(text):
+    assert Interpreter(builtin_domain("fruits")).finalize(text).intent == "accept"
+
+
 def test_runner_logs_actual_strategy_decision_without_participant_diagnostics(tmp_path):
     d = builtin_domain("holiday")
     human, agent = example_profiles(d)
